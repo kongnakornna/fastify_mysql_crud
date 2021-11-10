@@ -258,7 +258,7 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
             title: { status: true, statusCode : 200,cache: 'no cache' },
             message: 'welcome ' + user.firstname + ' ' + user.lastname + ' Sign in system successfully',
             message_th: 'ยินดีต้อนรับ คุณ ' + user.firstname + ' ' + user.lastname + ' เข้าสู่ระบบสำเร็จ',
-             data: datars,
+            // data: datars,
             // encoded: token,
             TIMEEXPIRE: env.TIMEEXPIRE,
             token
