@@ -1,0 +1,2 @@
+# fastify_mysql_typeorm_crud_nextjs_GraphQL
+fastify_mysql_typeorm_crud_nextjs_GraphQL
