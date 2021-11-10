@@ -6,10 +6,15 @@
 
 # fastify_appsservice
 - https://www.npmjs.com/package/fastify-typeorm
+- https://knexjs.org
+- https://graphql.org
+- https://typeorm.io/#
+- https://www.fastify.io
+- https://www.codegrepper.com/search.php?q=typeorm+nodejs&answer_removed=1
 - Nodejs
 - Typescript
 - TypeORM 
-- CRUD Next.js
+- CRUD knext.js
 - Mysql database
 - Mysql database CRUD
 - Mongodb as mongoose
