@@ -2,7 +2,6 @@ import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import * as knex from 'knex'
 import * as crypto from 'crypto'
 import * as Md5 from "md5-typescript";
- 
 /************* nodemailer*******************/ 
 import * as path from 'path'
 const envPath = path.join(__dirname, '../config.conf')
@@ -49,6 +48,72 @@ fastify.post('/', {}, async (request: FastifyRequest, reply: FastifyReply) => {
         return
     }
 })  
+fastify.post('/sd', {}, async (request: FastifyRequest, reply: FastifyReply) => {
+  /*************typeorm start******************************/
+    const body: any = request.body 
+    const username = body.username
+    const user_id = body.user_id
+    console.log(body) 
+  /*************typeorm end*******************************/
+    try {
+      if (user_id == '') {
+        reply.header('Access-Control-Allow-Methods', 'GET')
+        reply.header('message', 'Information Correct')
+        reply.header('statusCode', 500)
+        reply.header('status', false) 
+        reply.code(500).send({
+            title: { status: false, statusCode : 500, },
+            message: 'user_id is null', message_th: 'ไม่พบข้อมูล user_id'
+        })
+        console.log(request.body)
+        return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
+      }
+      // QueryBuilder
+      const data = await getRepository(Sd_users)
+                            .createQueryBuilder("Sd_users")
+                            .select("SUM(Sd_users.user_id)", "sum") 
+                            .select([
+                              "Sd_users.profile_id",
+                              "Sd_users.user_id AS Sd_users_uid",
+                              "Sd_users.user_id", 
+                              "Sd_users.username",
+                              "Sd_users.email",
+                              "Sd_users.firstname",
+                              "Sd_users.lastname",
+                              "Sd_users.fullname",
+                            ])
+                            .where("Sd_users.user_id = :user_id", { user_id })
+                            //.orWhere("Sd_users.username = :username", { username })
+                            .getMany()
+      // get QueryBuilder
+      console.log("typeorm is QueryBuilder : ",util.inspect( ' data : '+data, { showHidden: true, depth: true, colors: true }))
+      const rs: any = data  
+      const countdata: any = rs.length  
+      if (countdata>=1) {
+        // reply
+        reply.header('status', true)
+        reply.header('statusCode', 200)
+        reply.header('code', 200)
+        reply.code(200).send({code: 200,status: true,data: rs,count: countdata})
+        return  // exit loop ออกจากลูปการทำงาน 
+
+      } else {
+        reply.code(400).send({
+            title: { status: false, statusCode : 400,cache: 'no cache' },
+            message: 'information user_id '+ user_id +' not found in the system! or incorrect information', message_th: 'ไม่พบข้อมูล user_id '+ user_id +' ในระบบ หรือ ข้อมูลไม่ถูกต้อง',count: countdata
+        })
+        return  // exit loop ออกจากลูปการทำงาน 
+      }
+
+    } catch (error) { 
+        console.log(error)
+        reply.header('status', false)
+        reply.header('statusCode', 500)
+        reply.header('code', 500)
+        reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
+        return
+    }
+})  
 /**************************************************/  
 fastify.post('/sdusers', {}, async (request: FastifyRequest, reply: FastifyReply) => {
   /*************typeorm start******************************/
@@ -70,6 +135,7 @@ fastify.post('/sdusers', {}, async (request: FastifyRequest, reply: FastifyReply
         return
     }
 })  
+/**************************************************/  
 fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, reply: FastifyReply) => {
   /*************typeorm start******************************/
     const body: any = request.body 
@@ -131,6 +197,16 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
       console.log("typeorm is QueryBuilder : ",util.inspect( ' data : '+data, { showHidden: true, depth: true, colors: true }))
       const rs: any = data  
       const user: any = rs[0]
+      const user_idx = user.user_id
+      const datars = {
+              idx:  user_idx,
+              username: user.username, 
+              email: user.email,
+              firstName: user.firstname,
+              lastName: user.lastname,
+              level: user.level,
+              profile_id: user.profile_id,
+      }
       const countdata: any = rs.length  
       if (countdata>=1) {
         // reply
@@ -155,10 +231,7 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
         const timestamp = Date.now()
         const expiration_time=issued_at+time_setting 
         const token = fastify.jwt.sign({
-            user_id: user.user_id,level: user.level,
-            username: user.username,email: user.email,
-            profile_id: user.profile_id,
-            // firstName: user.firstname,lastName: user.lastname,
+            profile:datars,
             at: {
                 startdate: dateTime, 
                 issued_at: issued_at,
@@ -176,15 +249,7 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
     if (err) fastify.log.error(err)
     fastify.log.info(`Token verified. Foo is ${decoded.foo}`)
     })
-    const user_idx = user.user_id
-    const datars = {
-            uid:  user_idx,
-            username: user.username, 
-            email: user.email,
-            firstName: user.firstname,
-            lastName: user.lastname,
-            level: user.level,
-    }
+    
         reply.header('Access-Control-Allow-Methods', 'GET')
         reply.header('message', 'Information Correct')
         reply.header('statusCode', 200)
@@ -193,7 +258,8 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
             title: { status: true, statusCode : 200,cache: 'no cache' },
             message: 'welcome ' + user.firstname + ' ' + user.lastname + ' Sign in system successfully',
             message_th: 'ยินดีต้อนรับ คุณ ' + user.firstname + ' ' + user.lastname + ' เข้าสู่ระบบสำเร็จ',
-            // data: datars, encoded: token,
+             data: datars,
+            // encoded: token,
             TIMEEXPIRE: env.TIMEEXPIRE,
             token
         })
@@ -272,76 +338,9 @@ fastify.post('/authentication',async (request: FastifyRequest, reply: FastifyRep
             message_th: 'Authentication สำเร็จ',
             cache: 'no cache'
             },  
-            data: decoded
+            data: decoded['profile']
     }) 
     return
 })
-fastify.post('/sd', {}, async (request: FastifyRequest, reply: FastifyReply) => {
-  /*************typeorm start******************************/
-    const body: any = request.body 
-    const username = body.username
-    const user_id = body.user_id
-    console.log(body) 
-  /*************typeorm end*******************************/
-    try {
-      if (user_id == '') {
-        reply.header('Access-Control-Allow-Methods', 'GET')
-        reply.header('message', 'Information Correct')
-        reply.header('statusCode', 500)
-        reply.header('status', false) 
-        reply.code(500).send({
-            title: { status: false, statusCode : 500, },
-            message: 'user_id is null', message_th: 'ไม่พบข้อมูล user_id'
-        })
-        console.log(request.body)
-        return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
-      }
-      // QueryBuilder
-      const data = await getRepository(Sd_users)
-                            .createQueryBuilder("Sd_users")
-                            .select("SUM(Sd_users.user_id)", "sum") 
-                            .select([
-                              "Sd_users.profile_id",
-                              "Sd_users.user_id AS Sd_users_uid",
-                              "Sd_users.user_id", 
-                              "Sd_users.username",
-                              "Sd_users.email",
-                              "Sd_users.firstname",
-                              "Sd_users.lastname",
-                              "Sd_users.fullname",
-                            ])
-                            .where("Sd_users.user_id = :user_id", { user_id })
-                            //.orWhere("Sd_users.username = :username", { username })
-                            .getMany()
-      // get QueryBuilder
-      console.log("typeorm is QueryBuilder : ",util.inspect( ' data : '+data, { showHidden: true, depth: true, colors: true }))
-      const rs: any = data  
-      const countdata: any = rs.length  
-      if (countdata>=1) {
-        // reply
-        reply.header('status', true)
-        reply.header('statusCode', 200)
-        reply.header('code', 200)
-        reply.code(200).send({code: 200,status: true,data: rs,count: countdata})
-        return  // exit loop ออกจากลูปการทำงาน 
-
-      } else {
-        reply.code(400).send({
-            title: { status: false, statusCode : 400,cache: 'no cache' },
-            message: 'information user_id '+ user_id +' not found in the system! or incorrect information', message_th: 'ไม่พบข้อมูล user_id '+ user_id +' ในระบบ หรือ ข้อมูลไม่ถูกต้อง',count: countdata
-        })
-        return  // exit loop ออกจากลูปการทำงาน 
-      }
-
-    } catch (error) { 
-        console.log(error)
-        reply.header('status', false)
-        reply.header('statusCode', 500)
-        reply.header('code', 500)
-        reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
-        return
-    }
-})  
 /**************************************************/  
 }
- 
