@@ -405,3 +405,104 @@ fastify how to Stop processing handler after reply
 
 
 
+
+# Structure Code
+
+## Nodejs Template fastify framework
+
+# file
+
+- file
+- ├─.env.conf
+- ├─.dockerignore
+- ├─.gitignore
+- ├─.gitlab-ci
+- ├─config.conf
+- ├─Dockerfile
+- ├─gulpfile
+- ├─nodemon
+- ├─ormconfig
+- ├─package
+- ├─tsconfig
+- ├─README
+- ├─Node
+
+# Directory
+
+- directory
+- ├─node_modules
+- ├─public (your file directory )
+- ├─typings (typings from Typescript)
+- ├─upload (your file directory )
+- ├─views (template from ejs ot html )
+- ├─assets (css image template file)
+- src
+- ├─app.ts
+- ├─router.ts
+- ├─server.ts
+- ├─plugins (from the Fastify ecosystem)
+- ├─controllers
+- ├─models
+- ├─decorators
+- ├─schemas
+- ├─hooks
+- │ └─middlewares
+- ├─modules
+- │ ├─your modules1 service A
+- │ | ├──controllers (your main function)
+- │ | ├──models (your custom database function)
+- │ | ├──entity
+- │ | ├──hooks
+- │ | ├──libraries
+- │ | └──utils
+- │ ├─your modules2 service B
+- │ | ├──controllers (your main function)
+- │ | ├──models (your custom database function)
+- │ | ├──entity
+- │ | ├──hooks
+- │ | ├──libraries
+- │ | └──utils
+- │ ├─your modules3 service C
+- │ | ├──controllers (your main function)
+- │ | ├──models (your custom database function)
+- │ | ├──entity
+- │ | ├──hooks
+- │ | ├──libraries
+- │ | └──utils
+- ├─system
+- │ ├──core (from the Fastify ecosystem)
+- │ ├──database (your custom code)
+- │ ├──decorators (your custom code)
+- │ ├──entity (your custom code)
+- │ ├──helpers (your custom code)
+- │ ├──language (your custom code)
+- │ ├──libraries (from the Fastify ecosystem)
+- │ ├──middleware (from the Fastify ecosystem or your custom)
+- │ ├──migration (your custom plugins)
+- │ ├──plugins (your custom plugins)
+- │ ├──subscribers (your custom code)
+- │ └──vendor (your custom code)
+
+
+## Test restful api software
+- https://insomnia.rest/download
+- https://www.postman.com/downloads
+
+## Tools app dev or CI/CD
+- CI/CD คืออะไร?
+- CI/CD เป็นวิธีการที่ช่วยให้เราสามารถสร้าง Application ให้ลูกค้าได้ใช้งานด้วยการเอาระบบอัตโนมัติไปใส่ไว้ในขั้นตอนของการพัฒนา - Application ครับ ซึ่งเป็นแนวคิดที่ช่วยลดปัญหาในการ Merge Code ใหม่ ๆ ของเหล่า Developer และปัญหาระหว่างทีม Development และทีม Operation ก่อนที่ Deploy ไปยัง Production ครับ
+
+## CI/CD web
+- https://github.com
+- https://gitlab.com
+- https://www.jenkins.io
+- https://www.docker.com
+- https://kubernetes.io
+
+## Tools Develop
+- https://code.visualstudio.com/insiders
+- https://www.navicat.com/en
+
+## Project management
+- https://trello.com
+- https://www.atlassian.com
