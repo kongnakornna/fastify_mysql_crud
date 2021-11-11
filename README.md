@@ -1,12 +1,11 @@
 # fastify-framwork-template-backend 
-
-# Nodejs typescript  
-# Backend Vesion 1.0.0
-# Use fastify framework
-# Nodejs typescript fastify framwork  mysql typeorm  knextjs crud
-# Use Nodejs with fastify framework and knexjs framework mysql database
-# fomat  REST API
-# Document for developer
+- Nodejs typescript  
+- Backend Vesion 1.0.0
+- Use fastify framework
+- Nodejs typescript fastify framwork  mysql typeorm  knextjs crud
+- Use Nodejs with fastify framework and knexjs framework mysql database
+- fomat  REST API
+- Document for developer
 
 - https://www.fastify.io
 - https://knexjs.org
@@ -51,7 +50,7 @@
 - integration tests
 
 # Description project
-# This project created by Node JS version 14.17.0. Used Fastify framework+ Express framework for connect to server Coding by Typescript and Testing by Jest
+- This project created by Node JS version 14.17.0. Used Fastify framework+ Express framework for connect to server Coding by Typescript and Testing by Jest
 
 - Run on `port 8003` this port is fix by bible team and infrastructor team so you should not change it
 
@@ -85,7 +84,7 @@ Run `npm install fastify ` &&  Run `npm install tap pino-pretty --save-dev `
 
 # How To startup
 # step 1
-# Run Dev Source Code project
+- Run Dev Source Code project
 
 Run `npm install `  and  Run `npm install -g nodemon`
 
@@ -93,19 +92,19 @@ Run `npm install `  and  Run `npm install -g nodemon`
 Run `npm install redis`
 
 # step 2 
-# Development server
+- Development server
 
 - Run `npx nodemon` for a dev server.
 - Navigate `localhost:8003`. The app will automatically reload if you change any of the source files.
 
 # step 3
-# Build Source Code on production
+- Build Source Code on production
 
 Run `npx gulp `
 
 
 # step 4  run application on service
-# Run app on pm2
+- Run app on pm2
 
 - Run `npm i g pm2` 
 - Run `npm audit` for details.
@@ -128,7 +127,7 @@ Before Deploy you should change version in base url as GET. This project is CI/C
 ## Run all Tests
 - Run `npm run test `
 ## Delete `dist` folder
-n- Run `pm run clean`
+- Run `pm run clean`
 ## Trigger a clean build
 - Run `npm run build`
 ## Start the server using the output from `npm run build`
