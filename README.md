@@ -1,96 +1,115 @@
-# fastify_mysql_typeorm_crud_nextjs_GraphQL
+# fastify-framwork-template-backend 
 
-# template for dev backend Vesion 1.0.0 By fastify framework
-
+# Nodejs typescript  
+# Backend Vesion 1.0.0
+# Use fastify framework
+# Nodejs typescript fastify framwork  mysql typeorm  knextjs crud
 # Use Nodejs with fastify framework and knexjs framework mysql database
+# fomat  REST API
+# Document for developer
 
-# fastify_appsservice
-- https://www.npmjs.com/package/fastify-typeorm
-- https://knexjs.org
-- https://graphql.org
-- https://typeorm.io/#
 - https://www.fastify.io
-- https://www.codegrepper.com/search.php?q=typeorm+nodejs&answer_removed=1
+- https://knexjs.org
+- https://typeorm.io
+- https://nextjs.org
+
+# Document is relevant
+
+- https://graphql.org  
+- https://www.apollographql.com/docs
+- https://www.codegrepper.com/search.php?answer_removed=1&q=typeorm%20nodejs
+- https://www.npmjs.com/package/knex
+- https://orkhan.gitbook.io/typeorm/docs/select-query-builder
+- https://typeorm.io/#/select-query-builder/what-is-querybuilder
+- https://codetain.com/blog/implementing-server-side-crud-with-typescript-typeorm-and-graphql
+- https://orkhan.gitbook.io/typeorm/docs/sequelize-migration
+- https://www.npmjs.com/package/fastify-typeorm
+- https://javascript.plainenglish.io/set-up-graphql-with-fastify-mercurius-typescript-and-automated-testing-f4fc17420945
+- https://ichi.pro/th/rwm-graphql-kab-typeorm-laea-nestjs-doy-chi-perch-query-builder-88228883514206
+
+ 
+# Language use  and framework in develop
 - Nodejs
 - Typescript
 - TypeORM 
 - CRUD knext.js
-- Mysql database
-- Mysql database CRUD
-- Mongodb as mongoose
-- Redis cache
-- jwt && oauth2-server token Barer Header security allow access
 - es5 ,es6
-- typescript
-- typeorm
-- knex.js
+
+# Database Language 
+- Mysql database
+- Mongodb use  mongoose
+
+# Cache Language 
+- Redis cache
+
+# plugin or ecosystem use
+
+- jwt && oauth2-server token Barer Header security allow access
 - jwt token
 - json schema validation
 - build swagger documentation from routes
 - integration tests
 
-This project created by Node JS version 14.17.0. Used Fastify framework+ Express framework for connect to server Coding by Typescript and Testing by Jest
+# Description project
+# This project created by Node JS version 14.17.0. Used Fastify framework+ Express framework for connect to server Coding by Typescript and Testing by Jest
 
-- Run on port 8003 this port is fix by bible team and infrastructor team so you should not change it
+- Run on `port 8003` this port is fix by bible team and infrastructor team so you should not change it
 
 # Base URL
 
-This project have 3 step running such as
-
-- │ └──[localhost](localhost:8003),
-- │ └──[localhost](127.0.0.1:8003), 
-- │ └──[production](https://xxx.com:8003)
-
+- This project have 3 step running such as
+- localhost (localhost:8003)
+- localhost (127.0.0.1:8003)
+ 
 - About dev which is private url you must connect Pulse Secure before running
 
-# Database
+# Database use
+- Database as MySQL version 5.6.20 
+- Mongodb
 
-- Database as MySQL version 5.6.20 and Mongodb
-
-# Cache use
+# Storage  Cache use
 
 - Redis
 - memcache
 - cache file
 
-# Storage
-
-On directory `public` and now is not available because this storage need server team allow to access
-
-# Install Template Project
+# Project install nodejs modules 
 
 Run `npm i` for a local your pc
 
 
 # Testing
 
-Run `npm install fastify && npm install tap pino-pretty --save-dev`
+Run `npm install fastify ` &&  Run `npm install tap pino-pretty --save-dev `
 │ └─for a test available my code should run this commnad for sure before deploy on dev or production service
 
+# How To startup
+# step 1
 # Run Dev Source Code project
 
+Run `npm install `  and  Run `npm install -g nodemon`
 
-Run `npm install -g nodemon`
+# install redis
+Run `npm install redis`
 
+# step 2 
 # Development server
 
-Run `npx nodemon` for a dev server. Navigate `localhost:8003`. The app will automatically reload if you change any of the source files.
+- Run `npx nodemon` for a dev server.
+- Navigate `localhost:8003`. The app will automatically reload if you change any of the source files.
 
-
+# step 3
 # Build Source Code on production
 
 Run `npx gulp `
 
+
+# step 4  run application on service
 # Run app on pm2
 
-Run `npm i g pm2` 
-
-
+- Run `npm i g pm2` 
 - Run `npm audit` for details.
 
-# install redis
-
-Run `npm install redis`
 
 
 Run  ` pm2 start dist\sever.js --name "yous name app" ` up to your
@@ -105,18 +124,31 @@ So you can deploy on Dev via push code to gid branch name `dev` and build in Jen
 
 Before Deploy you should change version in base url as GET. This project is CI/CD and Jenkins. So you can deploy on Production via push code to gid branch name `main` and build in Jenkins
 
-# Developed By
 
-## Kongnakorn Jantakun
+## Run all Tests
+- Run `npm run test `
+## Delete `dist` folder
+n- Run `pm run clean`
+## Trigger a clean build
+- Run `npm run build`
+## Start the server using the output from `npm run build`
+- Run `npm run start`
+## Directly start the server via the TypeScript files
+- Run `npm run dev`
+## Run `eslint` on all TypeScript files located under `src`
+- Run `npm run lint`
+## Run `eslint` and fix all TypeScript files located under `src`
+- Run `npm run lint:write`
 
+
+# Developed By  Kongnakorn Jantakun
 # Contact information
-
 - Mr Kongnakorn Jantakun
 - Email kongnakornjantakun@gmail.com
 - Mobile No. +66955088091
   
 
-## Test restful api software
+# software test REST API 
 
 - https://insomnia.rest/download
 - https://www.postman.com/downloads
@@ -126,7 +158,7 @@ Before Deploy you should change version in base url as GET. This project is CI/C
 
 ## pm2 service
 
-- https://pm2.keymetrics.io
+-url  https://pm2.keymetrics.io
 
 Run `npm install pm2 -S`
 Run `npm i pm2 install pm2-server-monit -S`
@@ -372,26 +404,5 @@ fastify how to Stop processing handler after reply
 - Run ` npm install -g sequelize-auto MySQL -S`
 - Run ` npm install graphql  -S`
 
-## Run all tests
-- Run `npm run test `
-## Delete `dist` folder
-n- Run `pm run clean`
-## Trigger a clean build
-- Run `npm run build`
-## Start the server using the output from `npm run build`
-- Run `npm run start`
-## Directly start the server via the TypeScript files
-- Run `npm run dev`
-## Run `eslint` on all TypeScript files located under `src`
-- Run `npm run lint`
-## Run `eslint` and fix all TypeScript files located under `src`
-- Run `npm run lint:write`
-- https://javascript.plainenglish.io/set-up-graphql-with-fastify-mercurius-typescript-and-automated-testing-f4fc17420945
-- https://ichi.pro/th/rwm-graphql-kab-typeorm-laea-nestjs-doy-chi-perch-query-builder-88228883514206
 
-## typeorm docs
 
--  https://orkhan.gitbook.io/typeorm/docs/select-query-builder
--  https://typeorm.io/#/select-query-builder/what-is-querybuilder
--  https://codetain.com/blog/implementing-server-side-crud-with-typescript-typeorm-and-graphql
--  https://orkhan.gitbook.io/typeorm/docs/sequelize-migration
