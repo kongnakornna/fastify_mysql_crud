@@ -60,7 +60,7 @@ fastify.post('/verifytoken',{preValidation: [fastify.authenticate]},async (reque
     /*****************************************************/
     reply.header('version', 1)
     reply.header('x-cache-status', 0) // 1=yes ,0=no 
-    reply.header('code',200) 
+    reply.header('statusCode',200) 
     reply.code(200).send({
         title: { status: true, statusCode: 200},  
         message: 'jwt verify',
@@ -153,7 +153,7 @@ fastify.post('/accesstoken',{schema: accesstokenSchema}, async (request: Fastify
         jwtdata.expirein = expire_in
         reply.header('version', 1)
         reply.header('x-cache-status', 0) // 1=yes ,0=no 
-        reply.header('code',200) 
+        reply.header('statusCode',200) 
         reply.code(200).send({
             title: { status: true, statusCode: 200},  
             message: 'allow api welcome',
@@ -198,7 +198,7 @@ fastify.post('/jwtverify',{preValidation: [fastify.authenticate]},async (request
     /*****************************************************/
     reply.header('version', 1)
     reply.header('x-cache-status', 0) // 1=yes ,0=no 
-    reply.header('code',200) 
+    reply.header('statusCode',200) 
     reply.code(200).send({
         title: { status: true, statusCode: 200},  
         message: 'jwt verify',
@@ -236,7 +236,6 @@ fastify.post('/privateallow', { preValidation: [fastify.authenticate],schema: bo
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({
               code: 500, status: false, error: error,
               message: 'error data not found in the system!',
@@ -256,7 +255,7 @@ fastify.post('/gentoken', async (request: FastifyRequest, reply: FastifyReply) =
     reply.header('Pragma', 'no-cache')  
     reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
     reply.header('message', 'Working')
-    reply.header('code', 200)
+    reply.header('statusCode', 200)
     reply.header('status', true) 
     /*****************************************************/
     reply.send({ title: {
@@ -325,7 +324,6 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
     if (ma==1) {
       reply.header('status', true) 
       reply.header('statusCode', 200)
-      reply.header('code', 200)
       reply.code(200).send({
               title: { status: true, statusCode: 200, mode:'service' },
               status: true,
@@ -339,7 +337,6 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
     } else {
       reply.header('status', false) 
       reply.header('statusCode', 500)
-      reply.header('code', 500)
       reply.code(500).send({
             title: { status: false, statusCode: 500, mode:'Maintenance mode' },
             status: false,
@@ -369,7 +366,6 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
     if (ma==1) {
       reply.header('status', true) 
       reply.header('statusCode', 200)
-      reply.header('code', 200)
       reply.code(200).send({
               title: { status: true, statusCode: 200, mode:'service' },
               status: true,
@@ -383,7 +379,6 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
     } else {
       reply.header('status', false) 
       reply.header('statusCode', 500)
-      reply.header('code', 500)
       reply.code(500).send({
             title: { status: false, statusCode: 500, mode:'Maintenance mode' },
             status: false,
@@ -461,7 +456,6 @@ fastify.post('/test',{ schema:singinSchema}, async (request: FastifyRequest, rep
         /*
         reply.header('status', true)
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.code(200).send({code: 200,status: true,data: user,count: countdata})
         return  // exit loop ออกจากลูปการทำงาน 
         */
@@ -523,7 +517,6 @@ fastify.post('/test',{ schema:singinSchema}, async (request: FastifyRequest, rep
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
         return
     }
@@ -591,7 +584,6 @@ fastify.post('/generatetoken', { schema:generatetokenSchema}, async (request: Fa
         /*
         reply.header('status', true)
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.code(200).send({code: 200,status: true,data: user,count: countdata})
         return  // exit loop ออกจากลูปการทำงาน 
         */
@@ -653,7 +645,6 @@ fastify.post('/generatetoken', { schema:generatetokenSchema}, async (request: Fa
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
         return
     }
@@ -759,7 +750,6 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
         /*
         reply.header('status', true)
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.code(200).send({code: 200,status: true,data: user,count: countdata})
         return  // exit loop ออกจากลูปการทำงาน 
         */
@@ -793,7 +783,7 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
         jwtdata.expirein = expire_in
         reply.header('version', 1)
         reply.header('x-cache-status', 0) // 1=yes ,0=no 
-        reply.header('code',200) 
+        reply.header('statusCode',200) 
         /********************************/
     /******************************ตรวจสอบวันหมดอายุ Token check*************************************/
     // asycnhronously
@@ -835,7 +825,6 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
         return
     }
@@ -868,7 +857,7 @@ fastify.post('/authentication',async (request: FastifyRequest, reply: FastifyRep
     /*****************************************************/
     reply.header('version', 1)
     reply.header('x-cache-status', 0) // 1=yes ,0=no 
-    reply.header('code',200) 
+    reply.header('statusCode',200) 
     reply.code(200).send({
         title: { status: true, statusCode: 200},  
         message: 'jwt verify',
@@ -894,7 +883,6 @@ fastify.get('/mode', async (request: FastifyRequest, reply: FastifyReply) => {
   if (mode == 1) {
     reply.header('status', true) 
     reply.header('statusCode', 200)
-    reply.header('code', 200)
     reply.code(200).send({
             status: true,
             statusCode: 200,
@@ -907,7 +895,6 @@ fastify.get('/mode', async (request: FastifyRequest, reply: FastifyReply) => {
   } else {
     reply.header('status', false) 
     reply.header('statusCode', 500)
-    reply.header('code', 500)
     reply.code(500).send({
           status: false,
           statusCode: 500,
@@ -994,7 +981,6 @@ fastify.post('/profilebuid', { preValidation: [fastify.authenticate],schema: bod
       console.log(error)
       reply.header('status', false)
       reply.header('statusCode', 500)
-      reply.header('code', 500)
       reply.code(500).send({
             code: 500, status: false, error: error,
             message: 'error data not found in the system!',

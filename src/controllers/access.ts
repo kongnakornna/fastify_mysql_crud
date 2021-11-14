@@ -78,7 +78,6 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
     if (ma==1) {
       reply.header('status', true) 
       reply.header('statusCode', 200)
-      reply.header('code', 200)
       reply.code(200).send({
               title: { status: true, statusCode: 200, mode:'service' },
               status: true,
@@ -92,7 +91,6 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
     } else {
       reply.header('status', false) 
       reply.header('statusCode', 500)
-      reply.header('code', 500)
       reply.code(500).send({
             title: { status: false, statusCode: 500, mode:'Maintenance mode' },
             status: false,
@@ -122,7 +120,6 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
     if (ma==1) {
       reply.header('status', true) 
       reply.header('statusCode', 200)
-      reply.header('code', 200)
       reply.code(200).send({
               title: { status: true, statusCode: 200, mode:'service' },
               status: true,
@@ -136,7 +133,6 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
     } else {
       reply.header('status', false) 
       reply.header('statusCode', 500)
-      reply.header('code', 500)
       reply.code(500).send({
             title: { status: false, statusCode: 500, mode:'Maintenance mode' },
             status: false,
@@ -214,7 +210,6 @@ fastify.post('/test',{ schema:singinSchema}, async (request: FastifyRequest, rep
         /*
         reply.header('status', true)
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.code(200).send({code: 200,status: true,data: user,count: countdata})
         return  // exit loop ออกจากลูปการทำงาน 
         */
@@ -276,7 +271,6 @@ fastify.post('/test',{ schema:singinSchema}, async (request: FastifyRequest, rep
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
         return
     }
@@ -345,7 +339,6 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
         /*
         reply.header('status', true)
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.code(200).send({code: 200,status: true,data: user,count: countdata})
         return  // exit loop ออกจากลูปการทำงาน 
         */
@@ -407,7 +400,6 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
         return
     }
@@ -490,7 +482,6 @@ fastify.post('/login', { schema:singinSchema}, async (request: FastifyRequest, r
         /*
         reply.header('status', true)
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.code(200).send({code: 200,status: true,data: user,count: countdata})
         return  // exit loop ออกจากลูปการทำงาน 
         */
@@ -552,7 +543,6 @@ fastify.post('/login', { schema:singinSchema}, async (request: FastifyRequest, r
         console.log(error)
         reply.header('status', false)
         reply.header('statusCode', 500)
-        reply.header('code', 500)
         reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
         return
     }
@@ -644,7 +634,6 @@ fastify.get('/mode', async (request: FastifyRequest, reply: FastifyReply) => {
   if (mode == 1) {
     reply.header('status', true) 
     reply.header('statusCode', 200)
-    reply.header('code', 200)
     reply.code(200).send({
             status: true,
             statusCode: 200,
@@ -657,7 +646,6 @@ fastify.get('/mode', async (request: FastifyRequest, reply: FastifyReply) => {
   } else {
     reply.header('status', false) 
     reply.header('statusCode', 500)
-    reply.header('code', 500)
     reply.code(500).send({
           status: false,
           statusCode: 500,
