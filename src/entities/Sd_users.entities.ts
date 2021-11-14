@@ -1,9 +1,6 @@
-import {
-   Entity,
-   PrimaryGeneratedColumn,
-   Column
- } from 'typeorm'
- @Entity()
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+@Entity()
+  
  export class Sd_users {
     @PrimaryGeneratedColumn()
     user_id!: number
@@ -96,7 +93,7 @@ import {
     @Column({ unique: false, nullable: true,})
     online_status!: number
     
-    @Column({type: 'text',unique: true,nullable: true,})
+    @Column({unique: false, nullable: true,type: "varchar", length: 255 })
     mesage!: string
  
     @Column({unique: false,nullable: true,})

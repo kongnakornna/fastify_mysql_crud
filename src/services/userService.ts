@@ -1,38 +1,12 @@
- 
 import { getManager, getRepository } from 'typeorm'
-import { User } from '../entities/User.entities'
-import { UserModel } from '../interfaces/user'
-// import { UserRepository } from '../repositories/User.repository';
+import { Sd_users } from '../entities/Sd_users.entities'
+import { Sd_users_model } from '../interfaces/Sd_users'
+// import { Sd_usersRepository } from '../repositories/Sd_users.repository';
 
-const getAllUser = async (): Promise<User[]> => {
-  return await getManager().find(User)
-}
-
-const getUser = async (userId: string): Promise<User | undefined> => {
-  return await getRepository(User).findOne(userId)
-}
-
-const createUser = async (user: UserModel): Promise<User> => {
-  return await getRepository(User).save(user)
-}
-
-const updateUser = async (userId: string, user: UserModel): Promise<User> => {
-  const existingUser = await getRepository(User).findOne(userId)
-  const userToUpdate = { ...existingUser, ...user }
-  return await getRepository(User).save(userToUpdate)
-}
-
-const deleteUser = async (userId: string): Promise<User | undefined> => {
-  const userToDelete = await getRepository(User).findOne(userId)
-  if (userToDelete) {
-    return await getRepository(User).remove(userToDelete)
-  }
+const getAllSd_users = async (): Promise<Sd_users[]> => {
+  return await getManager().find(Sd_users)
 }
 
 export default {
-  getAllUser,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser,
+  getAllSd_users, 
 }

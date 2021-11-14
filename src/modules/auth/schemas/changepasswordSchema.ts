@@ -9,18 +9,18 @@ export default {
       },
       oldpassword: {
         type: 'string',
-       // minLength: 15,
+       // minLength: 10,
        // maxLength: 100
       },
       newpassword: {
         type: 'string',
-        minLength: 15,
-        maxLength: 100
+        minLength: 10,
+        maxLength: 150
       },
       firstname: {
         type: 'string',
         minLength: 8,
-        maxLength: 100
+        maxLength: 150
       },
       user_id: {
         type: 'integer',

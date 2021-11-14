@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FileModel=void 0;class FileModel{save(e,l){return e("files").insert(l,"file_id")}getInfo(e,l){return e("files").where("file_id",l)}}exports.FileModel=FileModel;

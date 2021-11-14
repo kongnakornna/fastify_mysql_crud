@@ -5,7 +5,6 @@ import fp from 'fastify-plugin'
 import * as knex from 'knex'
 import * as crypto from 'crypto'
 import { UserModel } from '../../modules/auth/models/user_model'
-import { AuthadminModel } from '../../modules/administrator/models/authadmin_model'
 /*********************************/
 import * as path from 'path'
 const cookie = require('fastify-cookie');
@@ -250,7 +249,7 @@ module.exports = fp(async (fastify: any, opts: any) => {
              console.log('jwt Verify request :'+request)
             /*********************************/
             const userModel = new UserModel()
-            const adminModel = new AuthadminModel()
+            const adminModel = new UserModel()
                 const db1: knex = fastify.db1
                     /******************************ตรวจสอบวันหมดอายุ Token check*************************************/ 
                         const decoded: any= verify_token 
@@ -371,7 +370,7 @@ module.exports = fp(async (fastify: any, opts: any) => {
              console.log('jwt Verify request :'+request)
             /*********************************/
             const userModel = new UserModel()
-            const adminModel = new AuthadminModel()
+            const adminModel = new UserModel()
             
                 const db1: knex = fastify.db1
                     /******************************ตรวจสอบวันหมดอายุ Token check*************************************/ 

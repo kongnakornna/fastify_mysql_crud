@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import * as crypto from 'crypto'
 import * as path from 'path'
-const envPath = path.join(__dirname, '../config.conf')
+const envPath = path.join(__dirname, '../.env') 
 require('dotenv').config({ path: envPath })
 import * as knex from 'knex';
 export class AuthadminModel  {

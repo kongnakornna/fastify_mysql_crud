@@ -8,8 +8,8 @@ export default async function index(fastify: FastifyInstance) {
 
   fastify.get('/jwt/sign', async (request: FastifyRequest, reply: FastifyReply) => {
     const token = fastify.jwt.sign({
-      firstName: 'Satit',
-      lastName: 'Rianpit'
+      firstName: 'na',
+      lastName: 'test'
     })
 
     reply.send({ token })

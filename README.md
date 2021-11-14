@@ -1,4 +1,131 @@
-# fastify-framwork-template-backend 
+# Fastapi: 8001 
+# port : 8001
+
+## Base URL
+
+This project have 3 step running such as [localhost](localhost:8001), [dev](http://localhost:8001/fasiapi/), [production](https://app.io/atlantic/fasiapi)
+
+About dev which is private url you must connect Pulse Secure before running
+
+## Database
+
+Database as MySQL version 5.6.20 on trueplookpanya 
+
+## Storage
+
+On `https://static.app.io` and now is not available because this storage need server team allow to access
+
+# How To run project
+# install project
+- Run `npm install `  or Run `npm i `  and  Run `npm install -g nodemon`
+# Development server
+- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json ./src/server.ts `
+# Build Source Code on production
+- Run `npx gulp `
+ -- After Run `npm gulp ` is have directory `dist` file in package typescript
+- Run On pm2 
+- Run `npm install pm2 -g`  install pm2 on your machine
+- go to directory  `dist`
+- 1st  new install application service
+- Run `pm2 start sever.js --name "apiservice" `  up to your , example ` "apiservice" ` is `name service`
+- 2rd  run application service on pm2
+- Run `pm2 start server.js`  run pm2 service on your machine
+- 3th  run pm2 monitor service
+- Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+
+# How To run project
+# install project
+- Run `npm install `  and  Run `npm install -g nodemon`
+# Development server
+- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json ./src/server.ts `
+# Build Source Code on production
+- Run `npx gulp `
+
+# github 
+-  branches name
+- 1.`maian` for source code version 
+- 2.`dev`   for ci/cd  deploy into junkins `development`
+- 3.`master`for ci/cd  deploy into junkins `production`
+
+
+# Testing
+
+Run `npm install fastify ` &&  Run `npm install tap pino-pretty --save-dev `
+│ └─for a test available my code should run this commnad for sure before deploy on dev or production service
+
+# How To startup
+# step 1
+- Run Dev Source Code project
+
+Run `npm install `  and  Run `npm install -g nodemon`
+
+# install redis
+Run `npm install redis`
+
+# step 2 
+- Development server
+- Run `npx nodemon` for a dev server.
+- Navigate `localhost:8001`. The app will automatically reload if you change any of the source files.
+
+# step 3
+- Build Source Code on production
+
+Run `npx gulp`
+
+
+# step 4  run application on service
+- install
+- Run `npm i g pm2` 
+- Run `npm audit` for details.
+- Run `npm install pm2 -g`  install pm2 on your machine
+- go to directory  `dist`
+- 1st  new install application service
+- Run `pm2 start sever.js --name "apiservice" `  up to your , example ` "apiservice" ` is `name service`
+- 2rd  run application service on pm2
+- Run `pm2 start server.js`  run pm2 service on your machine
+- 3th  run pm2 monitor service
+- Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+
+# Deploy on Dev or production
+
+Step Deploy you should change version in base url as GET. This project is CI/CD and Jenkins.
+So you can deploy on Dev via push code to gid branch name `dev` and build in Jenkins
+
+# Deploy on Production
+
+Before Deploy you should change version in base url as GET. This project is CI/CD and Jenkins. 
+So you can deploy on Production via push code to gid branch name `master` and build in Jenkins
+About dev which is private url you must connect Pulse Secure before running
+
+# scripts test / build /  /deploy on file package.json
+ "scripts": {
+    "start-prod": "pm2 delete $npm_package_pm2Name; pm2 flush $npm_package_pm2Name; NODE_ENV=production pm2 start ts-node --name=$npm_package_pm2Name -- -P tsconfig.json -r ./src/server.ts;",
+    "start-dev": "pm2 delete $npm_package_pm2Name; pm2 flush $npm_package_pm2Name; NODE_ENV=development pm2 start ts-node --name=$npm_package_pm2Name -- -P tsconfig.json -r ./src/server.ts;",
+    "start": "set NODE_ENV=local&npx ts-node -P tsconfig.json src/server.ts",
+    "build": "tsc -P tsconfig.json",
+    "build:dist": "npx gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+# scripts nodemon file nodemon.json
+`{
+	  "verbose": true,
+	  "ignore": [
+		"*.js",
+		"views/*",
+		"public/*"
+	  ],
+	  "watch": [
+		"src"
+	  ],
+	  "ext": "ts",
+	  "exec": "npx ts-node -P tsconfig.json -r ./src/server.ts"
+	}`
+
+# Jenkins is ( Continuous Integration (CI) ) with  github or git
+ - https://www.jenkins.io
+ 
+
+# About source code
 - Nodejs typescript  
 - Backend Vesion 1.0.0
 - Use fastify framework
@@ -6,7 +133,6 @@
 - Use Nodejs with fastify framework and knexjs framework mysql database
 - fomat  REST API
 - Document for developer
-
 - https://www.fastify.io
 - https://knexjs.org
 - https://typeorm.io
@@ -52,13 +178,13 @@
 # Description project
 - This project created by Node JS version 14.17.0. Used Fastify framework+ Express framework for connect to server Coding by Typescript and Testing by Jest
 
-- Run on `port 8003` this port is fix by bible team and infrastructor team so you should not change it
+- Run on `port 8001` this port is fix by bible team and infrastructor team so you should not change it
 
 # Base URL
 
 - This project have 3 step running such as
-- localhost (localhost:8003)
-- localhost (127.0.0.1:8003)
+- localhost (localhost:8001)
+- localhost (127.0.0.1:8001)
  
 - About dev which is private url you must connect Pulse Secure before running
 
@@ -93,9 +219,8 @@ Run `npm install redis`
 
 # step 2 
 - Development server
-
 - Run `npx nodemon` for a dev server.
-- Navigate `localhost:8003`. The app will automatically reload if you change any of the source files.
+- Navigate `localhost:8001`. The app will automatically reload if you change any of the source files.
 
 # step 3
 - Build Source Code on production
@@ -105,13 +230,9 @@ Run `npx gulp `
 
 # step 4  run application on service
 - Run app on pm2
-
 - Run `npm i g pm2` 
 - Run `npm audit` for details.
-
-
-
-Run  ` pm2 start dist\sever.js --name "yous name app" ` up to your
+- Run `pm2 start dist\sever.js --name "tyyptcas" ` up to your
 - Test Demo `pm2 start dist\sever.js --name "myapi" `
 
 # Deploy on Dev or production
@@ -157,10 +278,11 @@ Before Deploy you should change version in base url as GET. This project is CI/C
 
 ## pm2 service
 
--url  https://pm2.keymetrics.io
+- url  https://pm2.keymetrics.io
 
-Run `npm install pm2 -S`
-Run `npm i pm2 install pm2-server-monit -S`
+- Run `npm install pm2 -S`
+- Run `npm i pm2 install pm2-server-monit -S`
+- Run `pm2 start ts-node -- -P tsconfig.server.json ./server/index.ts`
 
 # คำสั่งสำหรับแสดง process ทั้งหมดใน server PM2
 
@@ -180,22 +302,22 @@ Run `pm2 stop `<id|name|all>
 
 # คำสั่งดูรายละเอียดของเครื่อง server และ process ที่ทำงาน
 
-Run `pm2 start dist\server.js --name "appservicev1"`
+Run ` pm2 start dist\server.js --name "fastapi" `
 
 Run `pm2 dash`
 
 # ติดตั้ง pm2
-
+Run ` npm install pm2 -S npm i pm2 install pm2-server-monit -S `
 Run `npm install pm2 -g`
 
 # สั่งให้ program ทำงาน
 
-Run `pm2 start index.js ` // index.js คือ ชื่อโปรแกรม
-Run `pm2 start index.js -n "Web app service `  
+Run `pm2 start server.js ` // index.js คือ ชื่อโปรแกรม
+Run `pm2 start server.js -n "apifast" `  
 ในกรณีที่ต้องการให้ run ใน mode cluster ให้เติม parameter -i แล้วตามด้วยจำนวน instance ที่ต้องการเช่น
-Run `pm2 start index.js -i 2 ` หมายถึง ทำเป็น cluster 2 ตัว
+Run `pm2 start server.js -i 2 ` หมายถึง ทำเป็น cluster 2 ตัว
 หรือ
-Run `pm2 start index.js -i max ` หมายถึงทำเป็น cluster มากที่สุดเท่าที่ cpu รองรับ
+Run `pm2 start server.js -i max ` หมายถึงทำเป็น cluster มากที่สุดเท่าที่ cpu รองรับ
 
 กรณีที่เรา start อยู่ใน mode cluster แล้วอยากจะปรับเปลี่ยนจำนวน instance เช่นอยากปรับจาก 2 เป็น 4
 
@@ -221,7 +343,7 @@ Run `pm2 restart all `restart โปรแกรมทั้งหมด
 ในกรณีที่ต้องการ reload ให้คำสั่ง ดังนี้
 
 Run `pm2 reload index` reload โปรแกรมตามชื่อที่กำหนด
-Run ` pm2 reload 0` reload โปรแกรมตาม id ที่กำหนด
+Run `pm2 reload 0` reload โปรแกรมตาม id ที่กำหนด
 Run `pm2 reload all ` reload โปรแกรมทั้งหมด
 
 ในกรณีที่ต้องการดูข้อมูลว่า process นั่นๆ ถูก start จากไหน แล้ว log เก็บไว้ที่ไหน
@@ -234,14 +356,13 @@ pm2 จะแสดงข้อมูลต่างๆ เช่น status, nam
 Run `pm2 flush `
 ในกรณีที่เราต้องการให้ auto start program เราเมื่อ server เรา start ให้ใช้คำสั่งดังนี้
 
-Run ` pm2 startup` หมายถึงเมื่อมีการ start server ให้ program เรา start ด้วย
+Run `pm2 startup` หมายถึงเมื่อมีการ start server ให้ program เรา start ด้วย
 Run `pm2 save` หมายถึงให้ pm2 เก็บข้อมูลทั้งหมดเพื่อใช้ตอน start
 
 เมื่อต้องการดูว่าตอนนี้ program เราทำงานเป็นยังไงใช้ ram กับ cpu เป็นอย่างไรบ้างแบบ real time สามารถทำได้โดยใช้คำสั่ง
 Run `pm2 monit `
 
 # รวม Docker command line พื้นฐาน
-
 ## ถ้าเราจะ Push images ขึ้น Docker Registry จำเป็นต้อง login ก่อน
 
 Run `docker login` ท่านี้เดี๋ยวมันจะถ้า username, password เราทีหลัง
@@ -272,8 +393,8 @@ Run `docker run -d -it --name mysql \ -h mysql \ -e MYSQL_ROOT_PASSWORD=password
 
 # ตอนเราสั่ง Run สามารถใส่ parameter ได้เยอะแยะเลย
 
-`-d `//เหมือนเรา เวฟข้าวเซเว่น ไว้แล้วเสร็จเดี๋ยวเราค่อยมากินมัน
-`-h ` //กำหนดชื่อ Container name ถ้าไม่ระบุมันจะตั้งชื่อ เท่ๆ มาให้เราเอง
+`-d `//รอให้ระบบทำงานไป
+`-h ` //กำหนดชื่อ Container name ถ้าไม่ระบุ ระบบ มันจะตั้งชื่อ มาให้เราเอง
 `-e ` //กำหนด Environment ของ Container ต้องดูว่าแต่ล่ะ images มีอะไรให้เราเซ็ตบ้าง
 `-p` //กำหนด ports ที่จะให้ Client คุยกับ Docker hosts
 `-v` //Mount Volume จากใน Container(/var/lib/mysql) บอกว่าให้มาอ่านที่นี้นะ(your_path)
@@ -282,12 +403,11 @@ Run `docker run -d -it --name mysql \ -h mysql \ -e MYSQL_ROOT_PASSWORD=password
 
 Run `docker ps` โชว์ container ที่กำลังทำงานในเครื่องเรา
 Run `docker ps -a -s` ชว์ container ทั้งหมดทั้งที่กำลังทำงาน และ ไม่ได้ทำงานอยู่
-Run `docker ps <CONTAINER_ID> ` โชว์ container โดยการระบุ conatiner id หรือ host name
-`-s` // โชว์ Size Container
+Run `docker ps <CONTAINER_ID> ` โชว์ container โดยการระบุ conatiner id หรือ host name `-s` // โชว์ Size Container
 
 # docker cp
 
-Run ` copy file from host to container docker cp /my_file.txt:/usr/local/`
+Run `copy file from host to container docker cp /my_file.txt:/usr/local/`
 
 Run `copy file from container to host docker cp <containerId>:/file/path/within/container /host/path/target`
 
@@ -386,9 +506,8 @@ Run `docker-machine ssh default sudo vi /var/lib/boot2docker/profile export "HTT
 -คำสั่ง `-i` Keep STDIN open even if not attached
 -คำสั่ง `-t` Allocate a pseudo-TTY
 
-kwyword
-
-fastify how to Stop processing handler after reply
+# keyword
+- fastify how to Stop processing handler after reply
 
 - คำสั่ง `npm install middie -S`
 - คำสั่ง `npm i fastify-express -S`
@@ -402,107 +521,40 @@ fastify how to Stop processing handler after reply
 - Run ` npm install sequelize mysql2 -S `
 - Run ` npm install -g sequelize-auto MySQL -S`
 - Run ` npm install graphql  -S`
+- Run `npx ts-node -P tsconfig.json ./src/server.ts `
+- Run ` http://172.19.199.85:8001/tppy-tcas `
+
+# TypeORM
+MyProject
+├── src              // place of your TypeScript code
+│   ├── entity       // place where your entities (database models) are stored
+│   │   └── User.ts  // sample entity
+│   ├── migration    // place where your migrations are stored
+│   └── index.ts     // start point of your application
+├── .gitignore       // standard gitignore file
+├── ormconfig.json   // ORM and database connection configuration
+├── package.json     // node module dependencies
+├── README.md        // simple readme file
+└── tsconfig.json    // TypeScript compiler options
+
+
+### Remark
+# windows Run pm2   
+- Run  Updatre deploy source code `npx gulp `
+- Run `E:`
+- Run `cd E:\dev\apifast`
+- Run `cd dist`
+- Run `E:\dev\apifast\dist>`
+- Run `pm2 list`
+- Run `pm2 start server.js --name "apifast"`
+- Run `pm2 start server.js -i max`
+- Run `pm2 monit `
+- Run `pm2 stop all` 
+- Run `pm2 restart index ` restart โปรแกรมตามชื่อที่กำหนด
+- Run `pm2 restart 0 ` restart โปรแกรมตาม id ที่กำหนด   - Run `pm2 restart 9 `
+- Run `pm2 restart all `restart โปรแกรมทั้งหมด
 
 
 
 
-# Structure Code
 
-## Nodejs Template fastify framework
-
-# file
-
-- file
-- ├─.env.conf
-- ├─.dockerignore
-- ├─.gitignore
-- ├─.gitlab-ci
-- ├─config.conf
-- ├─Dockerfile
-- ├─gulpfile
-- ├─nodemon
-- ├─ormconfig
-- ├─package
-- ├─tsconfig
-- ├─README
-- ├─Node
-
-# Directory
-
-- directory
-- ├─node_modules
-- ├─public (your file directory )
-- ├─typings (typings from Typescript)
-- ├─upload (your file directory )
-- ├─views (template from ejs ot html )
-- ├─assets (css image template file)
-- src
-- ├─app.ts
-- ├─router.ts
-- ├─server.ts
-- ├─plugins (from the Fastify ecosystem)
-- ├─controllers
-- ├─models
-- ├─decorators
-- ├─schemas
-- ├─hooks
-- │ └─middlewares
-- ├─modules
-- │ ├─your modules1 service A
-- │ | ├──controllers (your main function)
-- │ | ├──models (your custom database function)
-- │ | ├──entity
-- │ | ├──hooks
-- │ | ├──libraries
-- │ | └──utils
-- │ ├─your modules2 service B
-- │ | ├──controllers (your main function)
-- │ | ├──models (your custom database function)
-- │ | ├──entity
-- │ | ├──hooks
-- │ | ├──libraries
-- │ | └──utils
-- │ ├─your modules3 service C
-- │ | ├──controllers (your main function)
-- │ | ├──models (your custom database function)
-- │ | ├──entity
-- │ | ├──hooks
-- │ | ├──libraries
-- │ | └──utils
-- ├─system
-- │ ├──core (from the Fastify ecosystem)
-- │ ├──database (your custom code)
-- │ ├──decorators (your custom code)
-- │ ├──entity (your custom code)
-- │ ├──helpers (your custom code)
-- │ ├──language (your custom code)
-- │ ├──libraries (from the Fastify ecosystem)
-- │ ├──middleware (from the Fastify ecosystem or your custom)
-- │ ├──migration (your custom plugins)
-- │ ├──plugins (your custom plugins)
-- │ ├──subscribers (your custom code)
-- │ └──vendor (your custom code)
-
-
-## Test restful api software
-- https://insomnia.rest/download
-- https://www.postman.com/downloads
-
-## Tools app dev or CI/CD
-- CI/CD คืออะไร?
-- CI/CD เป็นวิธีการที่ช่วยให้เราสามารถสร้าง Application ให้ลูกค้าได้ใช้งานด้วยการเอาระบบอัตโนมัติไปใส่ไว้ในขั้นตอนของการพัฒนา - Application ครับ ซึ่งเป็นแนวคิดที่ช่วยลดปัญหาในการ Merge Code ใหม่ ๆ ของเหล่า Developer และปัญหาระหว่างทีม Development และทีม Operation ก่อนที่ Deploy ไปยัง Production ครับ
-
-## CI/CD web
-- https://github.com
-- https://gitlab.com
-- https://www.jenkins.io
-- https://www.docker.com
-- https://kubernetes.io
-
-## Tools Develop
-- https://code.visualstudio.com/insiders
-- https://www.navicat.com/en
-
-## Project management
-- https://trello.com
-- https://www.atlassian.com

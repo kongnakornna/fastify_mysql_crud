@@ -42,6 +42,17 @@ where_user_update_password(db1: knex, username: any, data: any) {
         return db1('sd_users')
         .where('username', username)
         .update(data)
+  }
+where_user_update_password_or(db1: knex, datareset: any, data: any) {
+        return db1('sd_users')
+        .where('username', datareset)
+        .orWhere('email', datareset)
+        .update(data)
+  }
+where_user_email_update_password(db1: knex, email: any, data: any) {
+        return db1('sd_users')
+        .where('email', email)
+        .update(data)
     }
 where_user_update_mail(db1: knex, emailold: any, data: any) {
       return db1('sd_users')
@@ -65,7 +76,7 @@ sd_users_profile(db1: knex, user_id: any) {
    }
 login(db1: knex, username: any, password: any) {
     return db1('sd_users')
-      .select('user_id', 'firstname', 'lastname', 'email', 'username', 'level')
+      .select('user_id','profile_id', 'firstname', 'lastname', 'email', 'username', 'level')
       .where('username', username)
       .where('password', password)
       .where('status', 1)
@@ -76,7 +87,15 @@ resetPassword(db1: knex, datareset: any) {
       .select('email', 'username', 'level')
       .where('username', datareset)
       .orWhere('email', datareset)
+  }
+chkemailorusername(db1: knex, datareset: any) {
+    return db1('sd_users')
+      .select('user_id', 'firstname', 'lastname')
+      .select('email', 'username', 'level')
+      .where('username', datareset)
+      .orWhere('email', datareset)
     }
+
 resetpwd(db1: knex, datareset: any) {
     return db1('sd_users')
       .select('user_id', 'firstname', 'lastname', 'email', 'username', 'level')

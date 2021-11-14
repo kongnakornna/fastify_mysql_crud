@@ -1,9 +1,8 @@
 import "reflect-metadata"
 import fp from "fastify-plugin"
 import { createConnection, getConnectionOptions } from "typeorm"
-import { User } from '../../entities/User.entities'
-import { Student } from '../../entities/Student.entities'
-
+import { Sd_users } from '../../entities/Sd_users.entities'
+ 
 module.exports = fp(async server => {
   try {
     // getConnectionOptions will read from ormconfig.js (or .env if that is prefered)
@@ -11,14 +10,13 @@ module.exports = fp(async server => {
     Object.assign(connectionOptions, {
       options: { encrypt: true },
       synchronize: true,
-      entities: [User, Student]
+      entities: [Sd_users]
     })
     const connection = await createConnection(connectionOptions)
 
     // this object will be accessible from any fastify server instance
     server.decorate("db", {
-      User: connection.getRepository(User),
-      Students: connection.getRepository(Student)
+      Sd_users: connection.getRepository(Sd_users) 
     })
   } catch (error) {
     console.log(error)
