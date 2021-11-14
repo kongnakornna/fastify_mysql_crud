@@ -23,7 +23,6 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
             if (ma==1) {
               reply.header('status', true) 
               reply.header('statusCode', 200)
-              reply.header('code', 200)
               reply.code(200).send({
                       title: { status: true, statusCode: 200, mode:'service' },
                       status: true,
@@ -37,7 +36,6 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
             } else {
               reply.header('status', false) 
               reply.header('statusCode', 500)
-              reply.header('code', 500)
               reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -67,7 +65,6 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
           if (ma==1) {
               reply.header('status', true) 
               reply.header('statusCode', 200)
-              reply.header('code', 200)
               reply.code(200).send({
                       title: { status: true, statusCode: 200, mode:'service' },
                       status: true,
@@ -81,7 +78,6 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
             } else {
               reply.header('status', false) 
               reply.header('statusCode', 500)
-              reply.header('code', 500)
               reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -106,7 +102,7 @@ fastify.post('/ui', async (request: FastifyRequest, reply: FastifyReply) => {
       reply.header('Pragma', 'no-cache')  
       reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
       reply.header('message', 'Working')
-      reply.header('code', 200)
+      reply.header('statusCode', 200)
       reply.header('status', true) 
       /*****************************************************/
       reply.send({
@@ -143,7 +139,7 @@ fastify.post('/jwt/signtest', async (request: FastifyRequest, reply: FastifyRepl
       reply.header('Pragma', 'no-cache')  
       reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
       reply.header('message', 'Working')
-      reply.header('code', 200)
+      reply.header('statusCode', 200)
       reply.header('status', true) 
       /*****************************************************/
       reply.send({ title: {
@@ -164,7 +160,7 @@ fastify.post('/jwt/private', { preValidation: [fastify.authenticate] },
       reply.header('Pragma', 'no-cache')  
       reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
       reply.header('message', 'Working')
-      reply.header('code', 200)
+      reply.header('statusCode', 200)
       reply.header('status', true) 
       /*****************************************************/
       reply.send({
@@ -205,7 +201,7 @@ fastify.post('/jwt/authentication',{preValidation: [fastify.authenticate]},async
   /*****************************************************/
   reply.header('version', 1)
   reply.header('x-cache-status', 0) // 1=yes ,0=no 
-  reply.header('code',200) 
+  reply.header('statusCode',200) 
   reply.code(200).send({
       title: { status: true, statusCode: 200},  
       message: 'jwt verify',
@@ -244,7 +240,7 @@ fastify.post('/jwtverify',{preValidation: [fastify.authenticate]},async (request
   /*****************************************************/
   reply.header('version', 1)
   reply.header('x-cache-status', 0) // 1=yes ,0=no 
-  reply.header('code',200) 
+  reply.header('statusCode',200) 
   reply.code(200).send({
       title: { status: true, statusCode: 200},  
       message: 'jwt verify',
@@ -338,7 +334,7 @@ fastify.post('/accesstoken',{schema: accesstokenSchema}, async (request: Fastify
       jwtdata.expirein = expire_in
       reply.header('version', 1)
       reply.header('x-cache-status', 0) // 1=yes ,0=no 
-      reply.header('code',200) 
+      reply.header('statusCode',200) 
       reply.code(200).send({
           title: { status: true, statusCode: 200},  
           message: 'allow api welcome',

@@ -127,8 +127,7 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
     /*****************************************************/
     if (ma==1) {
       reply.header('status', true) 
-      reply.header('statusCode', 200)
-      reply.header('code', 200)
+      reply.header('statusCode', 200) 
       reply.code(200).send({
               title: { status: true, statusCode: 200, mode:'service' },
               status: true,
@@ -141,8 +140,7 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
             })
     } else {
       reply.header('status', false) 
-      reply.header('statusCode', 500)
-      reply.header('code', 500)
+      reply.header('statusCode', 500) 
       reply.code(500).send({
             title: { status: false, statusCode: 500, mode:'Maintenance mode' },
             status: false,
@@ -171,8 +169,7 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
     /*****************************************************/
     if (ma==1) {
       reply.header('status', true) 
-      reply.header('statusCode', 200)
-      reply.header('code', 200)
+      reply.header('statusCode', 200) 
       /*************************/
       const expirein ="1days" // 60, "2 days", "10h", "7d" ("120" is equal to "120ms").
       const expire_in :any= expirein
@@ -196,8 +193,7 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
             })
     } else {
       reply.header('status', false) 
-      reply.header('statusCode', 500)
-      reply.header('code', 500)
+      reply.header('statusCode', 500) 
       reply.code(500).send({
             title: { status: false, statusCode: 500, mode:'Maintenance mode' },
             status: false,
@@ -218,8 +214,7 @@ fastify.post('/v1', async (request: FastifyRequest, reply: FastifyReply) => {
         try {
             if (ma == 1) { } else {
                 reply.header('status', false)
-                reply.header('statusCode', 500)
-                reply.header('code', 500)
+                reply.header('statusCode', 500) 
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -244,8 +239,7 @@ fastify.post('/v1', async (request: FastifyRequest, reply: FastifyReply) => {
                 // no-cache  private  public max-age=31536000 must-revalidate
                 reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
                 reply.header('message', 'Working')
-                reply.header('statusCode', 200)
-                reply.header('code', 200)
+                reply.header('statusCode', 200) 
                 reply.header('status', true) 
                 /*****************************************************/
                 reply.code(200).send({title:{
@@ -264,8 +258,7 @@ fastify.get('/v1', async (request: FastifyRequest, reply: FastifyReply) => {
     try {
         if (ma == 1) { } else {
             reply.header('status', false)
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.code(500).send({
                 title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                 status: false,
@@ -289,8 +282,7 @@ fastify.get('/v1', async (request: FastifyRequest, reply: FastifyReply) => {
                 // no-cache  private  public max-age=31536000 must-revalidate
                 reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
                 reply.header('message', 'Working')
-                reply.header('statusCode', 200)
-                reply.header('code', 200)
+                reply.header('statusCode', 200) 
                 reply.header('status', true) 
                 /*****************************************************/
                 reply.code(200).send({title:{
@@ -378,8 +370,7 @@ fastify.post('/singup', { schema: bodysingupSchema }, async (request: FastifyReq
                 reply.header('Pragma', 'no-cache') // no-cache  private  public max-age=31536000 must-revalidate
                 reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
                 reply.header('message', 'Password not secure')
-                reply.header('statusCode', 500)
-                reply.header('code', 500)
+                reply.header('statusCode', 500) 
                 reply.header('status', false)
                 reply.header('Password', false)
                 reply.code(500).send({
@@ -508,7 +499,7 @@ fastify.post('/singup', { schema: bodysingupSchema }, async (request: FastifyReq
                             jwtdata.expirein = expire_in
                             reply.header('version', 1)
                             reply.header('x-cache-status', 0) // 1=yes ,0=no 
-                            reply.header('code',200) 
+                            reply.header('statusCode',200) 
                             /********************************/
                         /******************************ตรวจสอบวันหมดอายุ Token check*************************************/
                     // asycnhronously
@@ -600,8 +591,7 @@ fastify.post('/singin',{ schema:singinSchema }, async (request: FastifyRequest, 
         try {
             if (ma == 1) { } else {
                 reply.header('status', false)
-                reply.header('statusCode', 500)
-                reply.header('code', 500)
+                reply.header('statusCode', 500) 
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -674,7 +664,7 @@ fastify.post('/singin',{ schema:singinSchema }, async (request: FastifyRequest, 
                 jwtdata.expirein = expire_in
                 reply.header('version', 1)
                 reply.header('x-cache-status', 0) // 1=yes ,0=no 
-                reply.header('code',200) 
+                reply.header('statusCode',200) 
                 /********************************/
 
             /******************************ตรวจสอบวันหมดอายุ Token check*************************************/
@@ -733,8 +723,7 @@ fastify.post('/resetpass', async (request: FastifyRequest, reply: FastifyReply) 
     try {
         if (ma == 1) { } else {
             reply.header('status', false)
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.code(500).send({
                 title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                 status: false,
@@ -748,8 +737,7 @@ fastify.post('/resetpass', async (request: FastifyRequest, reply: FastifyReply) 
             return
         }if (ma == 911) {
             reply.header('status', false)
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.code(500).send({
                 title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                 status: false,
@@ -834,8 +822,7 @@ fastify.post('/resetpass', async (request: FastifyRequest, reply: FastifyReply) 
       } else {
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
-            reply.header('statusCode', 401)
-                reply.header('code', 401)
+            reply.header('statusCode', 401) 
             reply.header('status', false) 
             reply.code(401).send({  title:{ status: false, statusCode : 401,}, 
                                     message: 'username or email is do not have in database',
@@ -857,8 +844,7 @@ fastify.post('/changepassword',{
     try {
         if (ma == 1) { } else {
             reply.header('status', false)
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.code(500).send({
                 title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                 status: false,
@@ -881,8 +867,7 @@ fastify.post('/changepassword',{
     if (username === "") {
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.header('status', false) 
             reply.code(500).send({
                 title: { status: false, statusCode : 500, },
@@ -893,8 +878,7 @@ fastify.post('/changepassword',{
     } if (oldpassword === "") {
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.header('status', false) 
             reply.code(500).send({
                 title: { status: false, statusCode : 500, },
@@ -905,8 +889,7 @@ fastify.post('/changepassword',{
     } if (newpassword === "") {
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
-            reply.header('statusCode', 500)
-            reply.header('code', 500)
+            reply.header('statusCode', 500) 
             reply.header('status', false) 
             reply.code(500).send({
                 title: { status: false, statusCode : 500, },
@@ -927,8 +910,7 @@ fastify.post('/changepassword',{
         reply.header('Pragma', 'no-cache') // no-cache  private  public max-age=31536000 must-revalidate
         reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
         reply.header('message', 'Password not secure')
-        reply.header('statusCode', 500)
-        reply.header('code', 500)
+        reply.header('statusCode', 500) 
         reply.header('status', false)
         reply.header('Password', false)
         reply.code(500).send({
@@ -967,7 +949,6 @@ fastify.post('/changepassword',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 401)
-            reply.header('code', 401)
             reply.header('status', false) 
              reply.code(401).send({ status: false,statusCode : 401, message: 'change password failed! ',message_th: 'เปลี่ยนรหัสผ่านไม่สำเร็จ ไม่พบข้อมูล username หรือ password ในระบบ'  })
              return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
@@ -1022,7 +1003,6 @@ fastify.post('/changepassword',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 200)
-            reply.header('code', 200)
             reply.header('status', true) 
             reply.send({
                 title: {status: true, statusCode : 200,cache:'no cache'},
@@ -1042,7 +1022,6 @@ fastify.post('/changepassword',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.header('status', false) 
             reply.code(500).send({ title: {status: false, statusCode : 500,},message: error })
             return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
@@ -1058,7 +1037,6 @@ fastify.post('/changeemail',{
         if (ma == 1) { } else {
             reply.header('status', false)
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.code(500).send({
                 title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                 status: false,
@@ -1081,7 +1059,6 @@ fastify.post('/changeemail',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.header('status', false) 
             reply.code(500).send({
                 title: { status: false, statusCode : 500, },
@@ -1093,7 +1070,6 @@ fastify.post('/changeemail',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.header('status', false) 
             reply.code(500).send({
                 title: { status: false, statusCode : 500, },
@@ -1105,7 +1081,6 @@ fastify.post('/changeemail',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.header('status', false) 
             reply.code(500).send({
                 title: { status: false, statusCode : 500, },
@@ -1150,7 +1125,6 @@ fastify.post('/changeemail',{
         reply.header('Access-Control-Allow-Methods', 'GET')
         reply.header('message', 'Information Correct')
         reply.header('statusCode', 200)
-        reply.header('code', 200)
         reply.header('status', true) 
         reply.send({
                 title: {status: true, statusCode : 200,cache:'no cache'},
@@ -1164,7 +1138,6 @@ fastify.post('/changeemail',{
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.header('status', false) 
             reply.code(500).send({ title: {status: false, statusCode : 500,},message: error })
             return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
@@ -1178,7 +1151,6 @@ fastify.post('/activecode',{preValidation: [fastify.authenticate]}, async (reque
             reply.header('Access-Control-Allow-Methods', 'GET')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 500)
-            reply.header('code', 500)
             reply.header('status', false) 
             reply.code(500).send({ title: {status: false, statusCode : 500,},message: 'code is null',message_th: 'ไม่พบข้อมูล code' })
             console.log(request.body)
@@ -1199,7 +1171,6 @@ fastify.post('/activecode',{preValidation: [fastify.authenticate]}, async (reque
             reply.header('Access-Control-Allow-Methods', 'POST')
             reply.header('message', 'Information Correct')
             reply.header('statusCode', 200)
-            reply.header('code', 200)
             reply.header('status', true) 
                     reply.send({  // แสดงข้อมูล api
                         title: {
@@ -1217,7 +1188,7 @@ fastify.post('/activecode',{preValidation: [fastify.authenticate]}, async (reque
       console.log(error)
       reply.header('Access-Control-Allow-Methods', 'POST')
       reply.header('message', 'Information Correct')
-      reply.header('code', 500)
+      reply.header('statusCode', 500)
       reply.code(500).send({ // แสดงข้อมูล api
                         title: {
                                     title: {status: false, statusCode : 500,}, message: 'Results unsuccessful',message_th: 'แสดง ข้อมูลไม่สำเร็จ',cache:'no cache'
@@ -1326,7 +1297,7 @@ fastify.post('/verify',{preValidation: [fastify.authenticate]},async (request: F
     /*****************************************************/
     reply.header('version', 1)
     reply.header('x-cache-status', 0) // 1=yes ,0=no 
-    reply.header('code',200) 
+    reply.header('statusCode',200) 
     reply.code(200).send({
         title: { status: true, statusCode: 200},  
         message: 'jwt verify',
@@ -1366,7 +1337,7 @@ fastify.post('/verifyauthen',{preValidation: [fastify.authenticate]},async (requ
     /*****************************************************/
     reply.header('version', 1)
     reply.header('x-cache-status', 0) // 1=yes ,0=no 
-    reply.header('code',200) 
+    reply.header('statusCode',200) 
     reply.code(200).send({
         title: { status: true, statusCode: 200},  
         message: 'jwt verify',
@@ -1462,7 +1433,6 @@ fastify.get('/mode', async (request: FastifyRequest, reply: FastifyReply) => {
         if (mode == 1) {
           reply.header('status', true) 
           reply.header('statusCode', 200)
-          reply.header('code', 200)
           reply.code(200).send({
                   status: true,
                   statusCode: 200,
@@ -1475,7 +1445,6 @@ fastify.get('/mode', async (request: FastifyRequest, reply: FastifyReply) => {
         } else {
           reply.header('status', false) 
           reply.header('statusCode', 500)
-          reply.header('code', 500)
           reply.code(500).send({
                 status: false,
                 statusCode: 500,
@@ -1509,7 +1478,7 @@ fastify.post('/jwtsingin', async (request: FastifyRequest, reply: FastifyReply) 
         /*************************/
         reply.header('version', 1)
         reply.header('x-cache-status', 0) // 1=yes ,0=no 
-        reply.header('code',200) 
+        reply.header('statusCode',200) 
         reply.code(200).send({
               title: { status: true, statusCode: 200},  
               message: 'jwt sign',
@@ -1547,7 +1516,7 @@ fastify.post('/jwtverify',{preValidation: [fastify.authenticate]},async (request
     /*****************************************************/
     reply.header('version', 1)
     reply.header('x-cache-status', 0) // 1=yes ,0=no 
-    reply.header('code',200) 
+    reply.header('statusCode',200) 
     reply.code(200).send({
         title: { status: true, statusCode: 200},  
         message: 'jwt verify',
@@ -1641,7 +1610,7 @@ fastify.post('/accesstoken',{schema: accesstokenSchema}, async (request: Fastify
         jwtdata.expirein = expire_in
         reply.header('version', 1)
         reply.header('x-cache-status', 0) // 1=yes ,0=no 
-        reply.header('code',200) 
+        reply.header('statusCode',200) 
         reply.code(200).send({
             title: { status: true, statusCode: 200},  
             message: 'allow api welcome',
@@ -1670,7 +1639,7 @@ fastify.post('/private', { preValidation: [fastify.authenticate] },async (reques
   reply.header('Pragma', 'no-cache')  
   reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
   reply.header('message', 'Working')
-  reply.header('code', 200)
+  reply.header('statusCode', 200)
   reply.header('status', true) 
   /*****************************************************/
   reply.send({
@@ -1694,7 +1663,7 @@ fastify.post('/signtest', async (request: FastifyRequest, reply: FastifyReply) =
     reply.header('Pragma', 'no-cache')  
     reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
     reply.header('message', 'Working')
-    reply.header('code', 200)
+    reply.header('statusCode', 200)
     reply.header('status', true) 
     /*****************************************************/
     reply.send({ title: {

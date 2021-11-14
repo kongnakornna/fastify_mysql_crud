@@ -12,7 +12,6 @@ import {EntityRepository, Repository} from "typeorm";
 import { Sd_users } from '../entities/Sd_users.entities'
 /*************typeorm end*******************************/
 @EntityRepository(Sd_users)
-  
 export class SduserRepository extends Repository<Sd_users> {
 /*************************/
   finduser(username: string, password: string) {
@@ -69,6 +68,11 @@ export class SduserRepository extends Repository<Sd_users> {
   }
 /*************************/
 }
+
+//  https://github.com/typeorm/typeorm/blob/master/docs/select-query-builder.md#adding-where-expression
+
 // https://github.com/typeorm/typeorm/blob/master/docs/select-query-builder.md#what-is-querybuilder
+
 // https://www.google.com/search?q=typescript++redis&newwindow=1&rlz=1C1UEAD_enTH975TH975&sxsrf=AOaemvLN7z4U347kvwl8oax4mEMIDlcUbA%3A1636792976755&ei=kHqPYbPGLdHT1sQP17-S6Aw&oq=typescript++redis&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEMsBMgUIABDLATIFCAAQywEyBQgAEMsBMgUIABDLATIFCAAQywEyBQgAEMsBMgUIABDLATIGCAAQFhAeMgYIABAWEB46BwgjELADECc6BwgAEEcQsAM6BAgjECc6BAgAEEM6BQgAEIAEOgYIIxAnEBNKBAhBGABQmxBYui5gkUFoAnACeACAAXiIAe8EkgEDNi4xmAEAoAECoAEByAEJwAEB&sclient=gws-wiz&ved=0ahUKEwizzsz_-JT0AhXRqZUCHdefBM0Q4dUDCA4&uact=5
+
 // https://stackoverflow.com/questions/58583532/how-to-get-redis-value-for-a-given-redis-key-using-nodejs-redis

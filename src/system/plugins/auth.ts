@@ -119,7 +119,7 @@ module.exports = fp(async (fastify: any, opts: any) => {
             reply.header('version', 1)
             reply.header('x-cache-status', 0) // 1=yes ,0=no
             reply.header('cache-control', 'no-cache') // no-cache  private  public max-age=31536000 must-revalidate
-            reply.header('code', codegens)
+            reply.header('statusCode', codegens)
             reply.header('statusCode', 200)
             reply.header('status', true) 
             reply.send({ code: codegens, message: 'ok'})
@@ -129,7 +129,7 @@ module.exports = fp(async (fastify: any, opts: any) => {
                 reply.header('version', 1)
                 reply.header('x-cache-status', 0) // 1=yes ,0=no
                 reply.header('cache-control', 'no-cache') // no-cache  private  public max-age=31536000 must-revalidate
-                reply.header('code', '')
+                reply.header('statusCode', '')
                 reply.header('statusCode', 200)
                 reply.header('status', false)
                 reply.header('message', error)  

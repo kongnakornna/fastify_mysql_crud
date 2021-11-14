@@ -78,8 +78,7 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         try {
             if (ma == 1) { } else {
                 reply.header('status', false)
-                reply.header('statusCode', 500)
-                reply.header('code', 500)
+                reply.header('statusCode', 500) 
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -132,8 +131,7 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         try {
             if (ma == 1) { } else {
                 reply.header('status', false)
-                reply.header('statusCode', 500)
-                reply.header('code', 500)
+                reply.header('statusCode', 500) 
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -169,8 +167,7 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
             reply.header('x-cache-status', 0) // 1=yes ,0=no
             reply.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
             reply.header('Expires', '-1')
-            reply.header('Pragma', 'no-cache')  
-            reply.header('code', codegens)
+            reply.header('Pragma', 'no-cache')   
             reply.header('statusCode', 200)
             reply.header('status', true) 
             reply.send({ code: codegens, message: 'ok'})
@@ -182,7 +179,6 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
                 reply.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
                 reply.header('Expires', '-1')
                 reply.header('Pragma', 'no-cache')  
-                reply.header('code', '')
                 reply.header('statusCode', 200)
                 reply.header('status', false)
                 reply.header('message', error)  
@@ -194,9 +190,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -252,9 +247,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -309,9 +303,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -355,9 +348,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var mode: any =  1  // 0= ma
             try {
                 if (mode == 1) {
-                    reply.header('status', false)
+                    reply.header('status', false) 
                     reply.header('statusCode', 500)
-                    reply.header('code', 500)
                     reply.code(500).send({
                         status: false,
                         statusCode: 500,
@@ -408,9 +400,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -426,9 +417,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         } catch (error) { }
         /*****************************/
             if (body == null) {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -463,7 +453,7 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
             /*****************************************************/
             reply.header('version', 1)
             reply.header('x-cache-status', 0) // 1=yes ,0=no 
-            reply.header('code',200) 
+            reply.header('statusCode',200) 
             reply.code(200).send({
                 title: { status: true, statusCode: 200},  
                 message: 'jwt verify',
@@ -480,9 +470,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -524,7 +513,7 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
             /*****************************************************/
             reply.header('version', 1)
             reply.header('x-cache-status', 0) // 1=yes ,0=no 
-            reply.header('code',200) 
+            reply.header('statusCode',200) 
             reply.code(200).send({
                 title: { status: true, statusCode: 200},  
                 message: 'jwt verify',
@@ -557,9 +546,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -598,7 +586,7 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
             /*****************************************************/
             reply.header('version', 1)
             reply.header('x-cache-status', 0) // 1=yes ,0=no 
-            reply.header('code',200) 
+            reply.header('statusCode',200) 
             reply.code(200).send({
                 title: { status: true, statusCode: 200},  
                 message: 'jwt verify',
@@ -631,9 +619,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
@@ -693,9 +680,8 @@ fastify.register(require('fastify-jwt'), { secret: opts.secret })
         var ma : any =env.mode // 0= ma
         try {
             if (ma == 1) { } else {
-                reply.header('status', false)
+                reply.header('status', false) 
                 reply.header('statusCode', 500)
-                reply.header('code', 500)
                 reply.code(500).send({
                     title: { status: false, statusCode: 500, mode:'Maintenance mode' },
                     status: false,
