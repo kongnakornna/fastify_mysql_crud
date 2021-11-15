@@ -12,7 +12,6 @@ export const errorHandler = (
       .status(error.statusCode)
       .send({ error: error.serializeErrors() })
   }
-
   // else 500
   const systemError = new SystemError()
   return reply
