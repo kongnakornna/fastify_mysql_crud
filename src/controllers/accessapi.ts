@@ -734,6 +734,82 @@ fastify.post('/authentication',async (request: FastifyRequest, reply: FastifyRep
         // token: token, str: str, headers: headers, body: body,query: query,
         }) 
 })
+fastify.post('/refreshtoken',async (request: FastifyRequest, reply: FastifyReply) => {
+   // import * as path from 'path'
+        const envPath = path.join(__dirname, '../.env') 
+        require('dotenv').config({ path: envPath })
+        const env = process.env 
+        const opts = {}
+        var TIMEEXPIRE : any = env.TIMEEXPIRE
+        var TIMEEXPIRE_TOKEN : any =  env.TIMEEXPIRE_TOKEN
+        var mode : any =  env.mode
+        var client_id_conf: any =  env.client_id
+        var access_token_key_conf : any =  env.access_token_key
+        var secret_key_conf: any =  env.secret_key
+        var scopenumber_conf: any =  env.scopenumber
+        /*************************/
+        const headers: any = request.headers // header
+        const body: any = request.body // post 
+        const query: any = request.query // ?xx=1
+        const str: any = request.headers.authorization  // token in Bearer  header
+        const host: any = headers.host   
+        //var client_id: any = headers.client_id  
+        //var access_token_key: any = headers.access_token_key  
+        var secret_key: any = headers.secret_key  
+        var dubug: any =  headers.dubug
+        var timeset : any = '10d' // 60, "2 days", "10h", "7d".
+        var time : any =null
+        // var expire_in : any = time || timeset
+        var expire_in : any = time || TIMEEXPIRE_TOKEN || timeset
+        // access token
+        /*************************/ 
+        const token: any = str.replace("Bearer ", "")  
+        const token_bearer: any = fastify.jwt.verify(token) 
+        const jwtdata: any = {}
+        var start_token= token_bearer.iat
+        var end_token = token_bearer.exp
+        jwtdata.start_token= start_token
+        jwtdata.end_token = end_token
+        var time_expire_setting= end_token-start_token
+        let date: any =  Date.now()
+        var nowseconds = new Date().getTime()
+        var now: any = nowseconds
+        var numberValuenow: any = Math.round(now/1000)
+        jwtdata.now = numberValuenow 
+        let expire_in_time = (end_token-numberValuenow) 
+        jwtdata.time_expire_setting= time_expire_setting 
+        jwtdata.expire_in = expire_in_time 
+        jwtdata.info = token_bearer 
+        /*************typeorm end*******************************/
+        try {
+             /********************************/
+             let token = fastify.jwt.sign({token_bearer,expirein: expire_in },{ expiresIn: expire_in})
+             let decoded = fastify.jwt.decode(token)
+             const jwtdata: any = {}
+             jwtdata.token = token
+             jwtdata.decoded = decoded  
+             jwtdata.expirein = expire_in
+             reply.header('version', 1)
+             reply.header('x-cache-status', 0) // 1=yes ,0=no 
+             reply.header('statusCode',200) 
+             reply.code(200).send({
+                 title: { status: true, statusCode: 200},  
+                 message: 'refresh token successful',
+                 message_th: 'refresh token ',
+                 token:token,
+                 decoded:decoded,
+                 timeset: timeset,
+                 }) 
+             /********************************/
+        }catch (error) {
+                reply.header('accesstoken', '')
+                reply.header('statusCode', 500)
+                reply.header('status', false)
+                reply.header('message', error)  
+                reply.code(500).send({ resporn: 'forbidden access', message: error})
+              return  
+        }
+})
 /*****************************************************/ 
 fastify.post('/privateallow', { preValidation: [fastify.authenticate],schema: bodygetuser_id },async (request: FastifyRequest, reply: FastifyReply) => {
     reply.header('version', 1)
@@ -770,9 +846,78 @@ fastify.post('/privateallow', { preValidation: [fastify.authenticate],schema: bo
         return
     }
 })
+fastify.post('/singout',async (request: FastifyRequest, reply: FastifyReply) => {
+  const headers: any = request.headers // header
+  const body: any = request.body // post 
+  const query: any = request.query // ?xx=1 
+  const str: any = request.headers.authorization  // token in Bearer  header
+  const token: any = str.replace("Bearer ", "")  
+  const token_bearer: any = fastify.jwt.verify(token) 
+  const jwtdata: any = {}
+  var start_token= token_bearer.iat
+  var end_token = token_bearer.exp
+  jwtdata.start_token= start_token
+  jwtdata.end_token = end_token
+  var time_expire_setting= end_token-start_token
+  let date: any =  Date.now()
+  var nowseconds = new Date().getTime()
+  var now: any = nowseconds
+  var numberValuenow: any = Math.round(now/1000)
+  jwtdata.now = numberValuenow 
+  let expire_in_time = (end_token-numberValuenow) 
+  jwtdata.time_expire_setting= time_expire_setting 
+  jwtdata.expire_in = expire_in_time 
+  jwtdata.info = token_bearer 
+  //jwtdata.token= token 
+  /*****************************************************/
+  reply.header('version', 1)
+  reply.header('x-cache-status', 0) // 1=yes ,0=no 
+  reply.header('statusCode', 200) 
+  // const destroy_token: any = fastify.jwt.destroy(token) 
+  const destroy_token = fastify.jwt.decode(token)
+  reply.code(200).send({
+      status: true,
+      statusCode: 200,  
+      message: 'singout token successful',
+      message_th: 'singout token successful',
+      data: jwtdata,
+      destroy: destroy_token,
+      // token: token, str: str, headers: headers, body: body,query: query,
+      }) 
+})
 /**************************************************/       
 }
 /*
+
+const token = fastify.jwt.sign({ foo: 'bar' })
+const decoded = fastify.jwt.decode(token)
+const decoded = fastify.jwt.verify(token)
+const globalOptions = fastify.jwt.options
+
+
+1) Install jwt-redis from npm
+
+2) To Create -
+
+var redis = require('redis');
+var JWTR =  require('jwt-redis').default;
+var redisClient = redis.createClient();
+var jwtr = new JWTR(redisClient);
+
+jwtr.sign(payload, secret)
+    .then((token)=>{
+            // your code
+    })
+    .catch((error)=>{
+            // error handling
+    });
+3) To verify -
+
+jwtr.verify(token, secret);
+4) To Destroy -
+
+jwtr.destroy(token)
+
 
 # Scope var let const ใช้งานยังไง ?
 - `var`  สามารถ `Assign` ค่าใหม่ได้

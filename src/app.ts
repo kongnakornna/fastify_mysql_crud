@@ -5,7 +5,6 @@ const multer = require('fastify-multer')
 const autoload = require('fastify-autoload')
 import "reflect-metadata";
 const date = new Date()
- 
 /**********conf*************/
 var envPath = path.join(__dirname, '../.env') 
 require('dotenv').config({ path: envPath })
@@ -20,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
     console.log("production DB1_HOST: ", env.DB1_HOST)
     console.log("production DB1_NAME: ", env.DB1_NAME)
     /**************************/
-    // typeorm connection
+    /*** typeorm connection ***/
     var path_entities1 :any= env.path_entities1 // src
     var path_entities2 :any= env.path_entities2 // dist
     var path_entities  :any= env.path_entities // dist / src
@@ -30,16 +29,12 @@ if (process.env.NODE_ENV === "production") {
     var entities_Dir = path.join(__dirname,'../'+path_entities2+'/entities/') 
     var migrations_Dir = path.join(__dirname,'../'+path_entities2+'/migration/') 
     var subscribers_Dir = path.join(__dirname, '../' + path_entities2 + '/subscriber/') 
-
-
     console.log("typeorm is Path : ", util.inspect('entities_Path :' + entities_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Path : ", util.inspect('migrations_Path :' + migrations_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Path : ", util.inspect('subscribers_Path :' + subscribers_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' entities_Path : ' + entities_Dir, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' path_entities1 : ' + migrations_Dir, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' path_entities2 : ' + subscribers_Dir, { showHidden: true, depth: true, colors: true }))
-
-
 }else if (process.env.NODE_ENV === "development") {
     const envPath = path.join(__dirname, '../configdev.conf') 
     require('dotenv').config({ path: envPath })
@@ -49,7 +44,6 @@ if (process.env.NODE_ENV === "production") {
     console.log("development DB1_HOST: ", env.DB1_HOST)
     console.log("development DB1_NAME: ", env.DB1_NAME)
     /**************************/
-        
     // typeorm connection
     var path_entities1 :any= env.path_entities1 // src
     var path_entities2 :any= env.path_entities2 // dist
@@ -60,15 +54,12 @@ if (process.env.NODE_ENV === "production") {
     var entities_Dir = path.join(__dirname,'../'+path_entities2+'/entities/') 
     var migrations_Dir = path.join(__dirname,'../'+path_entities2+'/migration/') 
     var subscribers_Dir = path.join(__dirname, '../' + path_entities2 + '/subscriber/') 
-
-
     console.log("typeorm is Path : ", util.inspect('entities_Path :' + entities_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Path : ", util.inspect('migrations_Path :' + migrations_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Path : ", util.inspect('subscribers_Path :' + subscribers_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' entities_Path : ' + entities_Dir, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' path_entities1 : ' + migrations_Dir, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' path_entities2 : ' + subscribers_Dir, { showHidden: true, depth: true, colors: true }))
-
 } else {
     const envPath = path.join(__dirname, '../configlocal.conf') 
     require('dotenv').config({ path: envPath })
@@ -78,7 +69,6 @@ if (process.env.NODE_ENV === "production") {
     console.log("local DB1_HOST: ", env.DB1_HOST)
     console.log("local DB1_NAME: ", env.DB1_NAME)
     /**************************/
-    
     // typeorm connection
     var path_entities1 :any= env.path_entities1 // src
     var path_entities2 :any= env.path_entities2 // dist
@@ -89,16 +79,13 @@ if (process.env.NODE_ENV === "production") {
     var entities_Dir = path.join(__dirname,'../'+path_entities+'/entities/') 
     var migrations_Dir = path.join(__dirname,'../'+path_entities+'/migration/') 
     var subscribers_Dir = path.join(__dirname, '../' + path_entities + '/subscriber/') 
-
     console.log("typeorm is Path : ", util.inspect('entities_Path :' + entities_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Path : ", util.inspect('migrations_Path :' + migrations_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Path : ", util.inspect('subscribers_Path :' + subscribers_Path, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' entities_Path : ' + entities_Dir, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' path_entities1 : ' + migrations_Dir, { showHidden: true, depth: true, colors: true }))
     console.log("typeorm is Dir : ", util.inspect(' path_entities2 : ' + subscribers_Dir, { showHidden: true, depth: true, colors: true }))
-
 }
-
 const port_main: any = env.PORT  
 const address: any = env.address 
 /**********conf*************/
@@ -109,10 +96,6 @@ const app: fastify.FastifyInstance = fastify.fastify({
         level: 'info',
     }
 })
-
- 
-
-
 app.decorate('timeset', {
     expirein: '1days', // any = "1days" // 60, "1days", "10h", "7d"    ("120" is equal to "120ms").
 })

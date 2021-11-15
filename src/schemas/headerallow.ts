@@ -3,7 +3,7 @@ export default {
     'x-fastify-token': {
       type: 'string'
     },
-    description: "request token", 
+    description: "allow token", 
   },
   headers: {
     type: "object",
@@ -18,11 +18,11 @@ export default {
             type: 'string'
         },
     },
-      required:[ 
-                'secret_key'
+      required:['client_id',
+                'secret_key',
+                'access_token_key'
                 ]
-  },
-  body: {
+  },body: {
     type: 'object',
     properties: {
       username: {
@@ -32,13 +32,10 @@ export default {
       },
       password: {
         type: 'string',
-        minLength: 6,
+        minLength: 8,
         maxLength: 500
       },
     },
-    required: [
-      'username',
-      'password', 
-    ]
-  }
+      required: [],
+    }
 }

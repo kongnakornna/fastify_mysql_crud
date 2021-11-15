@@ -325,7 +325,7 @@ fastify.post('/singup', { schema: bodysingupSchema }, async (request: FastifyReq
         const body: any = request.body // post 
         const query: any = request.query // ?xx=1
         const str: any = headers.authorization  
-        var timeset : any = '10h' // 60, "2 days", "10h", "7d".
+        var timeset : any = '7d' // 60, "2 days", "10h", "7d".
         var time : any = body.time
         // var expire_in : any = time || timeset
         var expire_in : any = time || TIMEEXPIRE_TOKEN || timeset
@@ -579,7 +579,7 @@ fastify.post('/singin',{ schema:singinSchema }, async (request: FastifyRequest, 
         const body: any = request.body // post 
         const query: any = request.query // ?xx=1
         const str: any = headers.authorization  
-        var timeset : any = '10h' // 60, "2 days", "10h", "7d".
+        var timeset : any = '7d' // 60, "2 days", "10h", "7d".
         var time : any = body.time
         // var expire_in : any = time || timeset
         var expire_in : any = time || TIMEEXPIRE_TOKEN || timeset
@@ -1465,7 +1465,7 @@ fastify.post('/jwtsingin', async (request: FastifyRequest, reply: FastifyReply) 
         const body: any = request.body // post 
         const query: any = request.query // ?xx=1
         const str: any = headers.authorization  
-        var timeset : any = '10h' // 60, "2 days", "10h", "7d".
+        var timeset : any = '7d' // 60, "2 days", "10h", "7d".
         var time : any = body.time
        // var expire_in : any = time || timeset
         var expire_in : any = time || TIMEEXPIRE || timeset
@@ -1546,7 +1546,7 @@ fastify.post('/accesstoken',{schema: accesstokenSchema}, async (request: Fastify
     const body: any = request.body // post 
     const query: any = request.query // ?xx=1
     const str: any = headers.authorization  
-    var timeset : any = '10h' // 60, "2 days", "10h", "7d".
+    var timeset : any = '7d' // 60, "2 days", "10h", "7d".
     var time : any = body.time
     // var expire_in : any = time || timeset
     var expire_in : any = time || TIMEEXPIRE_TOKEN || timeset

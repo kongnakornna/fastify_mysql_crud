@@ -43,12 +43,3 @@ var start = async () => {
   }
 }
 start()
-// Command run
-/*
-# instrall
-Run `npm i` 
-# Dev Source Code project
-- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json ./src/server.ts `
-# Build Source Code on production
-Run `npx gulp `  
-*/

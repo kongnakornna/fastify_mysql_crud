@@ -19,10 +19,9 @@ export default {
         },
     },
       required:[ 
-                'secret_key'
+                'access_token_key'
                 ]
-  },
-  body: {
+  },body: {
     type: 'object',
     properties: {
       username: {
@@ -32,13 +31,10 @@ export default {
       },
       password: {
         type: 'string',
-        minLength: 6,
+        minLength: 8,
         maxLength: 500
       },
     },
-    required: [
-      'username',
-      'password', 
-    ]
-  }
+      required: [],
+    }
 }
