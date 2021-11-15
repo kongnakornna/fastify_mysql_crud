@@ -9,7 +9,7 @@ About dev which is private url you must connect Pulse Secure before running
 
 ## Database
 
-Database as MySQL version 5.6.20 on trueplookpanya 
+Database as MySQL version 5.6.20     
 
 ## Storage
 
@@ -17,30 +17,38 @@ On `https://static.app.io` and now is not available because this storage need se
 
 # How To run project
 # install project
-- Run `npm install `  or Run `npm i `  and  Run `npm install -g nodemon`
-# Development server
-- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json ./src/server.ts `
+- Run `npm install -g nodemon` # install nodemon
+- Run `npm install `  or Run `npm i ` 
+# Development server for localhost 
+- Run `npx nodemon` for a dev server.  
+- OR  Run `npm start`
+- OR  Run `npx ts-node -P tsconfig.json src/server.ts`
+- OR  Run `npx ts-node -P tsconfig.json -r ./src/server.ts`
+
+## Development server on Build
 # Build Source Code on production
 - Run `npx gulp `
  -- After Run `npm gulp ` is have directory `dist` file in package typescript
-- Run On pm2 
-- Run `npm install pm2 -g`  install pm2 on your machine
-- go to directory  `dist`
-- 1st  new install application service
-- Run `pm2 start sever.js --name "apiservice" `  up to your , example ` "apiservice" ` is `name service`
-- 2rd  run application service on pm2
-- Run `pm2 start server.js`  run pm2 service on your machine
-- 3th  run pm2 monitor service
-- Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
-
+# directory Build file ` dist/server.ts`
 # How To run project
 # install project
 - Run `npm install `  and  Run `npm install -g nodemon`
 # Development server
-- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json ./src/server.ts `
+- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json src/server.ts `
 # Build Source Code on production
 - Run `npx gulp `
-
+# PM2 TEST RUN
+# ############## How to Run PM2 on windows 
+- Run `D: `
+- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `pm2 list` # ดูว่า มี service ไหม
+- Run `pm2 delete tppy-tcas` #  ลบ service tppy-tcas ออก จาก pm2
+- Run `pm2 flush tppy-tcas`  #  ลบ log tppy-tcas ออก จาก pm2
+- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- OR Run `cd dist`
+- OR Run `pm2 start server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+ - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+ 
 # github 
 -  branches name
 - 1.`maian` for source code version 
@@ -65,12 +73,12 @@ Run `npm install redis`
 # step 2 
 - Development server
 - Run `npx nodemon` for a dev server.
-- Navigate `localhost:8001`. The app will automatically reload if you change any of the source files.
+- Navigate `localhost:3031`. The app will automatically reload if you change any of the source files.
 
 # step 3
 - Build Source Code on production
 
-Run `npx gulp`
+Run `npx gulp `
 
 
 # step 4  run application on service
@@ -79,12 +87,20 @@ Run `npx gulp`
 - Run `npm audit` for details.
 - Run `npm install pm2 -g`  install pm2 on your machine
 - go to directory  `dist`
+ -- After Run `npm gulp ` is have directory `dist` file in package typescript
+- Run On pm2 
+- Run `npm install pm2 -g`  install pm2 on your machine
+- go to directory  `dist`
 - 1st  new install application service
-- Run `pm2 start sever.js --name "apiservice" `  up to your , example ` "apiservice" ` is `name service`
+- Run `cd dist `
+- Run `pm2 start server.js --name "apiservice1" `  up to your , example ` "apiservice1" ` is `name service`
 - 2rd  run application service on pm2
 - Run `pm2 start server.js`  run pm2 service on your machine
+- Run `pm2 list` view list
 - 3th  run pm2 monitor service
 - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+
+
 
 # Deploy on Dev or production
 
@@ -95,7 +111,9 @@ So you can deploy on Dev via push code to gid branch name `dev` and build in Jen
 
 Before Deploy you should change version in base url as GET. This project is CI/CD and Jenkins. 
 So you can deploy on Production via push code to gid branch name `master` and build in Jenkins
+
 About dev which is private url you must connect Pulse Secure before running
+
 
 # scripts test / build /  /deploy on file package.json
  "scripts": {
@@ -125,6 +143,13 @@ About dev which is private url you must connect Pulse Secure before running
  - https://www.jenkins.io
  
 
+
+## Database
+
+Database as MySQL version 5.6.20 on trueplookpanya 
+
+## Storage
+ 
 # About source code
 - Nodejs typescript  
 - Backend Vesion 1.0.0
@@ -178,13 +203,13 @@ About dev which is private url you must connect Pulse Secure before running
 # Description project
 - This project created by Node JS version 14.17.0. Used Fastify framework+ Express framework for connect to server Coding by Typescript and Testing by Jest
 
-- Run on `port 8001` this port is fix by bible team and infrastructor team so you should not change it
+- Run on `port 3031` this port is fix by bible team and infrastructor team so you should not change it
 
 # Base URL
 
 - This project have 3 step running such as
-- localhost (localhost:8001)
-- localhost (127.0.0.1:8001)
+- localhost (localhost:3031)
+- localhost (127.0.0.1:3031)
  
 - About dev which is private url you must connect Pulse Secure before running
 
@@ -201,48 +226,6 @@ About dev which is private url you must connect Pulse Secure before running
 # Project install nodejs modules 
 
 Run `npm i` for a local your pc
-
-
-# Testing
-
-Run `npm install fastify ` &&  Run `npm install tap pino-pretty --save-dev `
-│ └─for a test available my code should run this commnad for sure before deploy on dev or production service
-
-# How To startup
-# step 1
-- Run Dev Source Code project
-
-Run `npm install `  and  Run `npm install -g nodemon`
-
-# install redis
-Run `npm install redis`
-
-# step 2 
-- Development server
-- Run `npx nodemon` for a dev server.
-- Navigate `localhost:8001`. The app will automatically reload if you change any of the source files.
-
-# step 3
-- Build Source Code on production
-
-Run `npx gulp `
-
-
-# step 4  run application on service
-- Run app on pm2
-- Run `npm i g pm2` 
-- Run `npm audit` for details.
-- Run `pm2 start dist\sever.js --name "tyyptcas" ` up to your
-- Test Demo `pm2 start dist\sever.js --name "myapi" `
-
-# Deploy on Dev or production
-
-Step Deploy you should change version in base url as GET. This project is CI/CD and Jenkins.
-So you can deploy on Dev via push code to gid branch name `dev` and build in Jenkins
-
-# Deploy on Production
-
-Before Deploy you should change version in base url as GET. This project is CI/CD and Jenkins. So you can deploy on Production via push code to gid branch name `main` and build in Jenkins
 
 
 ## Run all Tests
@@ -313,7 +296,7 @@ Run `npm install pm2 -g`
 # สั่งให้ program ทำงาน
 
 Run `pm2 start server.js ` // index.js คือ ชื่อโปรแกรม
-Run `pm2 start server.js -n "apifast" `  
+Run `pm2 start server.js -n "tppy-tcas" `  
 ในกรณีที่ต้องการให้ run ใน mode cluster ให้เติม parameter -i แล้วตามด้วยจำนวน instance ที่ต้องการเช่น
 Run `pm2 start server.js -i 2 ` หมายถึง ทำเป็น cluster 2 ตัว
 หรือ
@@ -522,7 +505,9 @@ Run `docker-machine ssh default sudo vi /var/lib/boot2docker/profile export "HTT
 - Run ` npm install -g sequelize-auto MySQL -S`
 - Run ` npm install graphql  -S`
 - Run `npx ts-node -P tsconfig.json ./src/server.ts `
-- Run ` http://172.19.199.85:8001/tppy-tcas `
+- Run ` http://172.19.199.85:3031/tppy-tcas `
+
+
 
 # TypeORM
 MyProject
@@ -541,37 +526,151 @@ MyProject
 ### Remark
 # windows Run pm2   
 - Run  Updatre deploy source code `npx gulp `
-- Run `E:`
-- Run `cd E:\dev\fastify_typeorm_knexjs_crud_mysql`
+- Run `D:`
+- Run `cd D:\UwAmp\www\git\tppy-tcas`
 - Run `cd dist`
-- Run `E:\dev\fastify_typeorm_knexjs_crud_mysql\dist>`
 - Run `pm2 list`
-- Run `pm2 start server.js --name "apifast"`
-- Run `pm2 start server.js -i max`
+- Run `pm2 start dist/server.js --name "tppy-tcas"`
+
+
+- Run `pm2 start server.js --name "tppy-tcas"`
+- Run `c -i max`
 - Run `pm2 monit `
 - Run `pm2 stop all` 
 - Run `pm2 restart index ` restart โปรแกรมตามชื่อที่กำหนด
 - Run `pm2 restart 0 ` restart โปรแกรมตาม id ที่กำหนด   - Run `pm2 restart 9 `
 - Run `pm2 restart all `restart โปรแกรมทั้งหมด
-
-
-
-
-
-import {getConnection} from "typeorm";
-
-await getConnection()
-    .createQueryBuilder()
-    .delete()
-    .from(User)
-    .where("id = :id", { id: 1 })
-    .execute();
  
 
-// https://github.com/typeorm/typeorm/blob/master/docs/select-query-builder.md#what-is-querybuilder
-// https://www.google.com/search?q=typescript++redis&newwindow=1&rlz=1C1UEAD_enTH975TH975&sxsrf=AOaemvLN7z4U347kvwl8oax4mEMIDlcUbA%3A1636792976755&ei=kHqPYbPGLdHT1sQP17-S6Aw&oq=typescript++redis&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEMsBMgUIABDLATIFCAAQywEyBQgAEMsBMgUIABDLATIFCAAQywEyBQgAEMsBMgUIABDLATIGCAAQFhAeMgYIABAWEB46BwgjELADECc6BwgAEEcQsAM6BAgjECc6BAgAEEM6BQgAEIAEOgYIIxAnEBNKBAhBGABQmxBYui5gkUFoAnACeACAAXiIAe8EkgEDNi4xmAEAoAECoAEByAEJwAEB&sclient=gws-wiz&ved=0ahUKEwizzsz_-JT0AhXRqZUCHdefBM0Q4dUDCA4&uact=5
-// https://stackoverflow.com/questions/58583532/how-to-get-redis-value-for-a-given-redis-key-using-nodejs-redis
-    
-    
-    
+# install nodejs on Windows OS
+- Run `npm i`
+- Run dev `npm ts-node -P tsconfig.json dist/server.ts `
+- or Run dev `npx nodemon`
+- Run product `npm ts-node -P tsconfig.json src/server.ts`
+- Run test `npm test`
+
+# install project
+- Run `npm install `  or Run `npm i `  and  Run `npm install -g nodemon`
+# Development server
+- Run `npx nodemon` for a dev server.  
+- OR  Run `npm start`
+- OR  Run `npx ts-node -P tsconfig.json src/server.ts`
+# Development server on Build
+- Run `npx xxx` for a dev server.  
+# Build Source Code on production
+- Run `npx gulp `
+
+# ############## How to Run PM2 on windows 
+- Run `D: `
+- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `pm2 list` # ดูว่า มี service ไหม
+- Run `pm2 delete tppy-tcas` #  ลบ service tppy-tcas ออก จาก pm2
+- Run `pm2 flush tppy-tcas`  #  ลบ log tppy-tcas ออก จาก pm2
+- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- OR Run `cd dist`
+- OR Run `pm2 start server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+ - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+
+
+# dev test
+- Run `npm i -D typescript ts-node nodemon`
+
+
+
+# How To run project
+# install project
+- Run `npm install -g nodemon` # install nodemon
+- Run `npm install `  or Run `npm i ` 
+# Development server for localhost 
+- Run `npx nodemon` for a dev server.  
+- OR  Run `npm start`
+- OR  Run `npx ts-node -P tsconfig.json src/server.ts`
+- OR  Run `npx ts-node -P tsconfig.json -r ./src/server.ts`
+
+## Development server on Build
+# Build Source Code on production
+- Run `npx gulp `
+ -- After Run `npm gulp ` is have directory `dist` file in package typescript
+# directory Build file ` dist/server.ts`
+# How To run project
+# install project
+- Run `npm install `  and  Run `npm install -g nodemon`
+# Development server
+- Run `npx nodemon` for a dev server.  OR  Run `npx ts-node -P tsconfig.json src/server.ts `
+# Build Source Code on production
+- Run `npx gulp `
+# PM2 TEST RUN
+# ############## How to Run PM2 on windows 
+- Run `D: `
+- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `pm2 list` # ดูว่า มี service ไหม
+- Run `pm2 delete tppy-tcas` #  ลบ service tppy-tcas ออก จาก pm2
+- Run `pm2 flush tppy-tcas`  #  ลบ log tppy-tcas ออก จาก pm2
+- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- OR Run `cd dist`
+- OR Run `pm2 start server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+ - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
+
+# PM2 TEST RUN dev  ใช้ทดสอบ   CMD start
+
+
+- Run `pm2 list`
+- Run `pm2 delete tppy-tcas`
+- Run `pm2 flush  tppy-tcas`
+- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+
+- json `  "scripts": {
+    "start-prod": "npm i pm2 delete $npm_package_pm2Name; pm2 flush $npm_package_pm2Name; NODE_ENV=production pm2 start dist/server.js --name $npm_package_pm2Name;",
+    "start-dev": "npm i pm2 delete $npm_package_pm2Name; pm2 flush $npm_package_pm2Name; NODE_ENV=development pm2 start dist/server.js --name $npm_package_pm2Name;",
+    "start": "set NODE_ENV=local&npx ts-node -P tsconfig.json src/server.ts",
+    "build": "tsc -P tsconfig.json",
+    "build:dist": "npx gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },`
+
+# PM2 TEST RUN dev  # ทดสอบ  โดย CMD END
+# https://pm2.keymetrics.io/docs/usage/quick-start/
+
+3031/tppy-tcas
+
+78
+
+- Run `pm2 list`
+- Run `pm2 delete all`
+- Run `pm2 flush all`
  
+- Run `pm2 delete 3031/tppy-tcas`
+- Run `pm2 flush 3031/tppy-tcas`
+- Run `pm2 start dist/server.js --name 3031/tppy-tcas`
+
+
+- Run `npm install md5-typescript -save`
+- Run `npm install email-validator -save`
+
+# Scope var let const ใช้งานยังไง ?
+- `var`  สามารถ `Assign` ค่าใหม่ได้
+- `let` สามารถ `Assign` ค่าใหม่ได้
+- `const` จะไม่สามารถถูก `assign` ค่าให้กับตัวแปรใหม่ได้
+# แนะนำให้ประกาศตัวแปรด้วย const เสมอและค่อยเปลี่ยนเป็น let ถ้าคุณต้องการเปลี่ยนแปลงค่า (mutate) หรือ assign ค่าให้ตัวแปรในภายหลัง
+
+# Var ใช้งานยังไง ?
+- ตัวเเปรที่ถูกประกาศด้วย `var` จะเป็น `function scope` เมื่อตัวเเปรถูกสร้างภายใน `function` นั้นสามารถเข้าถึงตัวเเปรนั้นได้ `function scoped `
+- ที่ถูกสร้างใน `function `จะไม่สามารถถูกเข้าถึงจากภายนอก `function` ได้
+
+# let ใช้งานยังไง ?
+- `var` และ `let` จะคล้ายกันแต่ตัวแปรที่ประกาศด้วย `let` จะเป็น
+- `Block scoped`
+- ไม่สามารถเข้าถึงก่อนที่มันจะถูก `assign` ค่าได้
+- ไม่สามารถประกาศตัวแปรซ้ำใน `scope` เดียวกันได้
+
+# const ใช้งานยังไง ?
+- การประกาศตัวแปรโดยใช้ `const` จะเหมือนกับ `let` แต่ต่างตรงที่พวกมันจะไม่สามารถ `assign` ค่าซ้ำได้
+- สรุปสั้นๆ สำหรับตัวแปรที่ประกาศแบบ `const:`
+- `Block Scoped`
+- ไม่สามารถเข้าถึงได้ก่อนถูก `assign` ค่า
+- ไม่สามารถประกาศซ้ำได้ใน `scope` เดียวกัน
+- ไม่สามารถ `assign` ซ้ำได้
+
+
+
+
