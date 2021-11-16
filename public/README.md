@@ -1,9 +1,9 @@
-# Fastapi: 8001 
-# port : 8001
+# Fastapi: 8003 
+# port : 8003
 
 ## Base URL
 
-This project have 3 step running such as [localhost](localhost:8001), [dev](http://localhost:8001/fasiapi/), [production](https://app.io/atlantic/fasiapi)
+This project have 3 step running such as [localhost](localhost:8003), [dev](http://localhost:8003/fasiapi/), [production](https://app.io/atlantic/fasiapi)
 
 About dev which is private url you must connect Pulse Secure before running
 
@@ -40,13 +40,13 @@ On `https://static.app.io` and now is not available because this storage need se
 # PM2 TEST RUN
 # ############## How to Run PM2 on windows 
 - Run `D: `
-- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `cd D:\UwAmp\www\git\fastapi`
 - Run `pm2 list` # ดูว่า มี service ไหม
-- Run `pm2 delete tppy-tcas` #  ลบ service tppy-tcas ออก จาก pm2
-- Run `pm2 flush tppy-tcas`  #  ลบ log tppy-tcas ออก จาก pm2
-- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- Run `pm2 delete fastapi` #  ลบ service fastapi ออก จาก pm2
+- Run `pm2 flush fastapi`  #  ลบ log fastapi ออก จาก pm2
+- Run `pm2 start dist/server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
 - OR Run `cd dist`
-- OR Run `pm2 start server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- OR Run `pm2 start server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
  - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
  
 # github 
@@ -164,9 +164,15 @@ Database as MySQL version 5.6.20 on trueplookpanya
 - https://nextjs.org
 
 # Document is relevant
-
+# graphql
 - https://graphql.org  
+- https://docs.nestjs.com/graphql/quick-start
+- https://www.npmjs.com/package/apollo-server-fastify
 - https://www.apollographql.com/docs
+- Run `npm install apollo-server-fastify apollo-server-core fastify graphql -S `
+- https://www.apollographql.com/docs/apollo-server/integrations/middleware/#apollo-server-fastify
+
+# Other
 - https://www.codegrepper.com/search.php?answer_removed=1&q=typeorm%20nodejs
 - https://www.npmjs.com/package/knex
 - https://orkhan.gitbook.io/typeorm/docs/select-query-builder
@@ -184,6 +190,7 @@ Database as MySQL version 5.6.20 on trueplookpanya
 - TypeORM 
 - CRUD knext.js
 - es5 ,es6
+- graphql
 
 # Database Language 
 - Mysql database
@@ -296,7 +303,7 @@ Run `npm install pm2 -g`
 # สั่งให้ program ทำงาน
 
 Run `pm2 start server.js ` // index.js คือ ชื่อโปรแกรม
-Run `pm2 start server.js -n "tppy-tcas" `  
+Run `pm2 start server.js -n "fastapi" `  
 ในกรณีที่ต้องการให้ run ใน mode cluster ให้เติม parameter -i แล้วตามด้วยจำนวน instance ที่ต้องการเช่น
 Run `pm2 start server.js -i 2 ` หมายถึง ทำเป็น cluster 2 ตัว
 หรือ
@@ -505,7 +512,7 @@ Run `docker-machine ssh default sudo vi /var/lib/boot2docker/profile export "HTT
 - Run ` npm install -g sequelize-auto MySQL -S`
 - Run ` npm install graphql  -S`
 - Run `npx ts-node -P tsconfig.json ./src/server.ts `
-- Run ` http://172.19.199.85:3031/tppy-tcas `
+- Run ` http://172.19.199.85:3031/fastapi `
 
 
 
@@ -527,16 +534,13 @@ MyProject
 # windows Run pm2   
 - Run  Updatre deploy source code `npx gulp `
 - Run `D:`
-- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `cd D:\UwAmp\www\git\fastapi`
 - Run `cd dist`
 - Run `pm2 list`
-- Run `pm2 start dist/server.js --name "tppy-tcas"`
+- Run `pm2 start dist/server.js --name "fastapi"`
 
 
-
-
-
-- Run `pm2 start server.js --name "tppy-tcas"`
+- Run `pm2 start server.js --name "fastapi"`
 - Run `c -i max`
 - Run `pm2 monit `
 - Run `pm2 stop all` 
@@ -565,13 +569,13 @@ MyProject
 
 # ############## How to Run PM2 on windows 
 - Run `D: `
-- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `cd D:\UwAmp\www\git\fastapi`
 - Run `pm2 list` # ดูว่า มี service ไหม
-- Run `pm2 delete tppy-tcas` #  ลบ service tppy-tcas ออก จาก pm2
-- Run `pm2 flush tppy-tcas`  #  ลบ log tppy-tcas ออก จาก pm2
-- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- Run `pm2 delete fastapi` #  ลบ service fastapi ออก จาก pm2
+- Run `pm2 flush fastapi`  #  ลบ log fastapi ออก จาก pm2
+- Run `pm2 start dist/server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
 - OR Run `cd dist`
-- OR Run `pm2 start server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- OR Run `pm2 start server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
  - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
 
 
@@ -605,22 +609,22 @@ MyProject
 # PM2 TEST RUN
 # ############## How to Run PM2 on windows 
 - Run `D: `
-- Run `cd D:\UwAmp\www\git\tppy-tcas`
+- Run `cd D:\UwAmp\www\git\fastapi`
 - Run `pm2 list` # ดูว่า มี service ไหม
-- Run `pm2 delete tppy-tcas` #  ลบ service tppy-tcas ออก จาก pm2
-- Run `pm2 flush tppy-tcas`  #  ลบ log tppy-tcas ออก จาก pm2
-- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- Run `pm2 delete fastapi` #  ลบ service fastapi ออก จาก pm2
+- Run `pm2 flush fastapi`  #  ลบ log fastapi ออก จาก pm2
+- Run `pm2 start dist/server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
 - OR Run `cd dist`
-- OR Run `pm2 start server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- OR Run `pm2 start server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
  - Run `pm2 monit ` * See how your program is working now, how are you using ram and cpu in real time?
 
 # PM2 TEST RUN dev  ใช้ทดสอบ   CMD start
 
 
 - Run `pm2 list`
-- Run `pm2 delete tppy-tcas`
-- Run `pm2 flush  tppy-tcas`
-- Run `pm2 start dist/server.js --name "tppy-tcas" ` #  ติดตั้ง service tppy-tcas ใหม่ บน pm2
+- Run `pm2 delete fastapi`
+- Run `pm2 flush  fastapi`
+- Run `pm2 start dist/server.js --name "fastapi" ` #  ติดตั้ง service fastapi ใหม่ บน pm2
 
 - json `  "scripts": {
     "start-prod": "npm i pm2 delete $npm_package_pm2Name; pm2 flush $npm_package_pm2Name; NODE_ENV=production pm2 start dist/server.js --name $npm_package_pm2Name;",
@@ -634,7 +638,7 @@ MyProject
 # PM2 TEST RUN dev  # ทดสอบ  โดย CMD END
 # https://pm2.keymetrics.io/docs/usage/quick-start/
 
-3031/tppy-tcas
+3031/fastapi
 
 78
 
@@ -642,9 +646,9 @@ MyProject
 - Run `pm2 delete all`
 - Run `pm2 flush all`
  
-- Run `pm2 delete 3031/tppy-tcas`
-- Run `pm2 flush 3031/tppy-tcas`
-- Run `pm2 start dist/server.js --name 3031/tppy-tcas`
+- Run `pm2 delete 3031/fastapi`
+- Run `pm2 flush 3031/fastapi`
+- Run `pm2 start dist/server.js --name 3031/fastapi`
 
 
 - Run `npm install md5-typescript -save`
@@ -655,7 +659,7 @@ MyProject
 - `let` สามารถ `Assign` ค่าใหม่ได้
 - `const` จะไม่สามารถถูก `assign` ค่าให้กับตัวแปรใหม่ได้
 # แนะนำให้ประกาศตัวแปรด้วย const เสมอและค่อยเปลี่ยนเป็น let ถ้าคุณต้องการเปลี่ยนแปลงค่า (mutate) หรือ assign ค่าให้ตัวแปรในภายหลัง
-
+ 
 # Var ใช้งานยังไง ?
 - ตัวเเปรที่ถูกประกาศด้วย `var` จะเป็น `function scope` เมื่อตัวเเปรถูกสร้างภายใน `function` นั้นสามารถเข้าถึงตัวเเปรนั้นได้ `function scoped `
 - ที่ถูกสร้างใน `function `จะไม่สามารถถูกเข้าถึงจากภายนอก `function` ได้
@@ -674,6 +678,18 @@ MyProject
 - ไม่สามารถประกาศซ้ำได้ใน `scope` เดียวกัน
 - ไม่สามารถ `assign` ซ้ำได้
 
+npm install fastify-xss-filter -S
 
+# รู้หรือไม่ Import/Require มันต่างกันกว่าที่คิด 
+# Module vs Namespace - Import vs Require Typescript
+# module/namespace/exportและimport, require, referenceการใช้งาน
 
+# require  แบ่ง `Code `ออกเป็นสัดเป็นส่วนหรือเป็น `Unit` ย่อยๆ 
+- `CommonJS Modules (using “require”)`
+- `CommonJS` คือรูปแบบการเขียน `JavaScript `แบบแบ่ง `Code `ออกเป็นสัดเป็นส่วนหรือเป็น `Unit` ย่อยๆ เพื่อให้ง่ายต่อการพัฒนาโปรเจคขนาดใหญ่ขึ้น 
+- จุดแข็งคือการทำงานแบบ `Synchronous`
 
+# import  สามารถจัดการการเขียนแบบ Modules ได้ด้วยตัวเองแล้ว
+`ES6 Modules (using “import”)`
+- ในสมัยก่อนนั้น JavaScript ยังไม่สามารถจัดการเรื่องของ Modules ได้ด้วยตัวเอง ทำให้ต้องใช้ Libs ต่างๆเข้ามาช่วยจัดการ เช่น CommonJS/AMD เป็นต้น - ซึ่งการมาของ ES2015/ES6 
+- นั้นได้มีการอัพเดทฟังก์ชั่น ES6 Modules เข้ามาทำให้ตัว JavaScript สามารถจัดการการเขียนแบบ Modules ได้ด้วยตัวเองแล้ว

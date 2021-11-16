@@ -4,6 +4,8 @@ const util = require('util')
 const multer = require('fastify-multer')
 const autoload = require('fastify-autoload')
 import "reflect-metadata";
+import { FastifyCookieOptions } from 'fastify-cookie'
+import cookie from 'fastify-cookie'
 const date = new Date()
 /**********conf*************/
 var envPath = path.join(__dirname, '../.env') 
@@ -91,6 +93,8 @@ const address: any = env.address
 /**********conf*************/
 import routers from './router'
 /**************************/
+
+
 const app: fastify.FastifyInstance = fastify.fastify({
     logger: {
         level: 'info',
@@ -99,12 +103,28 @@ const app: fastify.FastifyInstance = fastify.fastify({
 app.decorate('timeset', {
     expirein: '1days', // any = "1days" // 60, "1days", "10h", "7d"    ("120" is equal to "120ms").
 })
+// https://github.com/fastify/fastify-cookie
+app.register(cookie, {
+        secret: "my-secret", // for cookies signature
+        parseOptions: {}     // options for parsing cookies
+    } as FastifyCookieOptions)
+    app.register(require('fastify-cookie'), {
+        secret:['na,sa'] //[key1, key2]
+      })
 app.register(multer.contentParser) 
 app.register(require('fastify-cors'), { 
   // put your options here
 })
 app.register(require('fastify-formbody'))
 /**************************/
+// https://www.npmjs.com/package/sql-injection
+/************sql-injection*************/
+var sqlinjection = require('sql-injection');
+app.register(sqlinjection);
+app.register(function() {
+    app.register(sqlinjection);  // add sql-injection middleware here
+});
+/*************sql-injection*************/
 // knex db connect  webservicedb register knex db2  CRUD MYSQL
 app.register(require('./system/database/mysqldb'), {
     options: {

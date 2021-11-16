@@ -885,8 +885,192 @@ fastify.post('/singout',async (request: FastifyRequest, reply: FastifyReply) => 
       // token: token, str: str, headers: headers, body: body,query: query,
       }) 
 })
+fastify.post('/singincookiesession', { schema:singinSchema}, async (request: FastifyRequest, reply: FastifyReply) => {
+        // import * as path from 'path'
+        const envPath = path.join(__dirname, '../.env') 
+        require('dotenv').config({ path: envPath })
+        const env = process.env 
+        const opts = {}
+        var TIMEEXPIRE : any = env.TIMEEXPIRE
+        var TIMEEXPIRE_TOKEN : any =  env.TIMEEXPIRE_TOKEN
+        var mode : any =  env.mode
+        var client_id_conf: any =  env.client_id
+        var access_token_key_conf : any =  env.access_token_key
+        var secret_key_conf: any =  env.secret_key
+        var scopenumber_conf: any =  env.scopenumber
+        /*************************/
+        const headers: any = request.headers // header
+        const body: any = request.body // post 
+        const query: any = request.query // ?xx=1
+        const str: any = headers.authorization  
+        const host: any = headers.host   
+        //var client_id: any = headers.client_id  
+        //var access_token_key: any = headers.access_token_key  
+        var secret_key: any = headers.secret_key  
+        var dubug: any =  headers.dubug
+        var timeset : any = '1d' // 60, "2 days", "10h", "7d".
+        var time : any = body.time
+        // var expire_in : any = time || timeset
+        var expire_in : any = time || TIMEEXPIRE_TOKEN || timeset
+        // access token
+        /*************************/ 
+        var ma : any =env.mode // 0= ma
+        const username = body.username
+        const password = body.password
+        console.log(body) 
+        /*************typeorm end*******************************/
+    try { 
+        if (secret_key === null) {
+            reply.header('accesstoken', '')
+            reply.header('statusCode', 500)
+            reply.header('status', false)
+            reply.header('message','forbidden access')  
+            reply.code(500).send({ message: 'secret_key is empty ,forbidden access ', message_th: 'ไม่พบ secret_key ไม่อนุญาตให้เข้าถึง ระบบ'})
+            return  
+        }
+          if (secret_key === secret_key_conf) { }else{
+            reply.header('accesstoken', '')
+            reply.header('statusCode', 500)
+            reply.header('status', false)
+            reply.header('message','forbidden access')  
+            reply.code(500).send({ message: 'secret_key is incorrect ,forbidden access ', message_th: 'secret_key ไม่ถูกต้อง ไม่อนุญาตให้เข้าถึง'})
+            return  
+        }
+        if (username == '') {
+            reply.header('Access-Control-Allow-Methods', 'GET')
+            reply.header('message', 'Information Correct')
+            reply.header('statusCode', 500)
+            reply.header('status', false) 
+            reply.code(500).send({
+                title: { status: false, statusCode : 500, },
+                message: 'username is null', message_th: 'ไม่พบข้อมูล username'
+            })
+            console.log(request.body)
+            return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
+        } if (password == '') {
+            reply.header('Access-Control-Allow-Methods', 'GET')
+            reply.header('message', 'Information Correct')
+            reply.header('statusCode', 500)
+            reply.header('status', false) 
+            reply.code(500).send({
+                title: { status: false, statusCode : 500, },
+                message: 'password is null', message_th: 'ไม่พบข้อมูล password'
+            })
+            console.log(request.body)
+            return //reply.sent = true // exit loop ออกจากลูปการทำงาน 
+        }
+        const status1 :any= 1
+        const encPassword = crypto.createHash('md5').update(password).digest('hex')
+        const chkPassword: any = encPassword
+        console.log('password '+password)
+        console.log('chkPassword '+chkPassword) 
+        const password2: any = chkPassword
+        // QueryBuilder start
+        const status: number = Number(1)  
+        const respository = getCustomRepository(Sd_usersRepository);
+        const result = await respository.singin_by_user(username,chkPassword);
+        const data =  result
+        // get QueryBuilder end
+        console.log("typeorm is QueryBuilder : ",util.inspect( ' data : '+data, { showHidden: true, depth: true, colors: true }))
+        const rs: any = data  
+        const user: any = rs[0]
+        const user_idx = user.user_id
+        const datars = {
+                idx:  user_idx,
+                username: user.username, 
+                email: user.email,
+                firstName: user.firstname,
+                lastName: user.lastname,
+                level: user.level,
+                profile_id: user.profile_id,
+        }
+        const countdata: any = rs.length  
+        if (countdata>=1) {
+          // reply
+          /*
+          reply.header('status', true)
+          reply.header('statusCode', 200)
+          reply.code(200).send({code: 200,status: true,data: user,count: countdata})
+          return  // exit loop ออกจากลูปการทำงาน 
+          */
+          const user: any = data  
+          /******************************ตรวจสอบวันหมดอายุ Token check*************************************/
+          const day = 1
+          const time_expire_set :any = env.TIMEEXPIRE
+          const time_expire_set1 = 300
+          const time_setting  :any = env.TIMEEXPIRE
+          const today = new Date()
+          const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+          const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+          const dateTime = date + ' ' + time
+          const issued_at=Date.now()
+          const timestamp = Date.now()
+          const expiration_time = issued_at + time_setting 
+          /********************************/
+          const users: any = user[0]
+          console.log(users)
+          var token = fastify.jwt.sign({
+                    user_idx: users.user_id,profile_id: users.profile_id,level: users.level,
+                    username: users.username,email: users.email,
+                    firstName: users.firstname,lastName: users.lastname,
+                    state: getRandomString(32),  
+                    expirein: expire_in
+                }, { expiresIn: expire_in })
+          const decoded: any= fastify.jwt.verify(token)
+          const jwtdata: any = {}
+          jwtdata.token = token
+          jwtdata.decoded = decoded  
+          jwtdata.expirein = expire_in
+          reply.header('version', 1)
+          reply.header('x-cache-status', 0) // 1=yes ,0=no 
+          reply.header('statusCode',200) 
+          /********************************/
+          /******************************ตรวจสอบวันหมดอายุ Token check*************************************/
+          // asycnhronously
+          fastify.jwt.verify(token, (err:any, decoded:any) => {
+          if (err) fastify.log.error(err)
+          fastify.log.info(`Token verified. Foo is ${decoded.foo}`)
+          })
+          const user_idx = users.user_id
+          const datars = {
+                  uid:  user_idx,
+                  username: users.username, 
+                  email: users.email,
+                  firstName: users.firstname,
+                  lastName: users.lastname,
+                  level: users.level,
+          }
+          reply.header('Access-Control-Allow-Methods', 'GET')
+          reply.header('message', 'Information Correct')
+          reply.header('statusCode', 200)
+          reply.header('status', true) 
+          reply.send({
+              status: true, statusCode : 200,cache: 'no cache',
+              message: 'welcome ' + users.firstname + ' ' + users.lastname + ' Sign in system successfully',
+              message_th: 'ยินดีต้อนรับ คุณ ' + users.firstname + ' ' + users.lastname + ' เข้าสู่ระบบสำเร็จ',
+              // data: users, encoded: token,
+              TIMEEXPIRE: env.TIMEEXPIRE,
+              token
+          })
+          return // exit loop ออกจากลูปการทำงาน 
+        } else {
+          reply.code(400).send({
+               status: false, statusCode : 400,cache: 'no cache' ,
+              message: 'information username '+ username +' not found in the system! or incorrect information', message_th: 'ไม่พบข้อมูล username '+ username +' ในระบบ หรือ ข้อมูลไม่ถูกต้อง',count: countdata
+          })
+          return  // exit loop ออกจากลูปการทำงาน 
+        }
+    } catch (error) { 
+          console.log(error)
+          reply.header('status', false)
+          reply.header('statusCode', 500)
+          reply.code(500).send({ code: 500,status: false, error: error,message: 'error data not found in the system!',message_th: ' ไม่พบข้อมูล หรือ ระบบทำงานล้มเหลว',data: null, })
+          return
+    }
+})  
 /**************************************************/       
 }
+
 /*
 
 const token = fastify.jwt.sign({ foo: 'bar' })
