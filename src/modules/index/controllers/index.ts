@@ -18,7 +18,11 @@ fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
             // no-cache  private  public max-age=31536000 must-revalidate
             reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
             reply.header('message', 'Working')
-           
+            const MaxAge = 84000
+            const level = 1
+            const set_cookie: any = 'level=' + level + '; Max-Age=' + MaxAge + '; SameSite=None; Secure';  
+            reply.header('Set-Cookie','level=' + level + '; Max-Age=' + MaxAge + '; HttpOnly, Secure');
+            reply.header('Set-Cookie','visited=true; Max-Age='+MaxAge+'; HttpOnly, Secure');
             /*****************************************************/
             if (ma==1) {
               reply.header('status', true) 
@@ -60,7 +64,14 @@ fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
             // no-cache  private  public max-age=31536000 must-revalidate
             reply.header('Access-Control-Allow-Methods', 'GET,POST,PUT')
             reply.header('message', 'Working')
-           
+            const MaxAge = 84000
+            const level = 1
+            //const set_cookie: any = 'level=' + level + '; Max-Age=' + MaxAge + '; SameSite=None; Secure';  
+            reply.header('Set-Cookie','level=' + level + '; Max-Age=' + MaxAge + '; HttpOnly, Secure');
+            reply.header('Set-Cookie','visited=true; Max-Age='+MaxAge+'; HttpOnly, Secure');
+            const key ='4Q7uyew45EJNWntSaJWdGqDM' 
+            const set_cookie:any='key='+key+'; Max-Age='+MaxAge+'; SameSite=None; Secure';
+            reply.header('Set-Cookie', set_cookie)
             /*****************************************************/
           if (ma==1) {
               reply.header('status', true) 

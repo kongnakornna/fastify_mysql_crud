@@ -542,6 +542,11 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
               lastName: users.lastname,
               level: users.level,
       }
+
+          const MaxAge = 84000
+          const set_cookie:any='token='+token+'; Max-Age='+MaxAge+'; SameSite=None; Secure'; 
+          reply.header('Set-Cookie','visited=true; Max-Age='+MaxAge+'; HttpOnly, Secure');
+          reply.header('Set-Cookie', set_cookie)
           reply.header('Access-Control-Allow-Methods', 'GET')
           reply.header('message', 'Information Correct')
           reply.header('statusCode', 200)

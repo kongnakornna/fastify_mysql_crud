@@ -112,7 +112,29 @@ function getRandomString(length: any) {
             result += randomChars.charAt(Math.floor(Math.random() * randomChars.length))
         }
         return result
-}      
+}  
+function setCookie(name: string, val: string) {
+        const date = new Date();
+        const value = val;
+        // Set it expire in 7 days
+        date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+        // Set it
+        document.cookie = name+"="+value+"; expires="+date.toUTCString()+"; path=/";
+}
+function getCookie(name: string) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length == 2) {
+            //return parts.pop().split(";").shift();
+        }
+}
+function deleteCookie(name: string) {
+        const date = new Date();
+        // Set it expire in -1 days
+        date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
+        // Set it
+        document.cookie = name+"=; expires="+date.toUTCString()+"; path=/";
+}    
 fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
     var ma : any =env.mode
     reply.header('version', 1)
@@ -681,7 +703,37 @@ fastify.post('/singin',{ schema:singinSchema }, async (request: FastifyRequest, 
                     firstName: user.firstname,
                     lastName: user.lastname,
                     level: user.level,
-            }
+                }
+                const uid: any = user_idx
+                const username: any = user.username
+                const email: any = user.email
+                var level: any = user.level
+                if(level===null){ var level: any = 0 }
+                const tokens: any = token
+                /*****************/
+
+                // Save data to sessionStorage
+                // sessionStorage.setItem('key', 'value');
+                // sessionStorage.setItem('token', tokens);
+                // Get saved data from sessionStorage
+                // let data = sessionStorage.getItem('key');
+                // let datatoken = sessionStorage.getItem('token');
+                // Remove saved data from sessionStorage
+                // sessionStorage.removeItem('key');
+                // Remove all saved data from sessionStorage
+                // sessionStorage.clear();
+                const MaxAge = 84000
+                const set_cookie:any='token='+tokens+'; Max-Age='+MaxAge+'; SameSite=None; Secure';
+                const set_cookie1:any='username='+username+'; Max-Age='+MaxAge+'; SameSite=None; Secure';
+                const set_cookie2:any='email='+email+'; Max-Age='+MaxAge+'; SameSite=None; Secure'; 
+                const set_cookie3: any = 'level=' + level + '; Max-Age=' + MaxAge + '; SameSite=None; Secure'; 
+                const set_cookie4: any = 'uid=' + uid + '; Max-Age=' + MaxAge + '; SameSite=None; Secure';
+                reply.header('Set-Cookie','visited=true; Max-Age='+MaxAge+'; HttpOnly, Secure');
+                reply.header('Set-Cookie', set_cookie)
+                reply.header('Set-Cookie', set_cookie1)
+                reply.header('Set-Cookie', set_cookie2)
+                reply.header('Set-Cookie', set_cookie3)
+                reply.header('Set-Cookie', set_cookie4)
                 reply.header('Access-Control-Allow-Methods', 'GET')
                 reply.header('message', 'Information Correct')
                 reply.header('statusCode', 200)
@@ -694,6 +746,7 @@ fastify.post('/singin',{ schema:singinSchema }, async (request: FastifyRequest, 
                     // token:token,
                     // data: jwtdata,
                     timeset: timeset,
+                    //datatoken: datatoken,
                     token
                 })
                 return //reply.sent = true // exit loop ออกจากลูปการทำงาน 

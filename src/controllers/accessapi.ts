@@ -541,7 +541,11 @@ fastify.post('/singin', { schema:singinSchema}, async (request: FastifyRequest, 
               firstName: users.firstname,
               lastName: users.lastname,
               level: users.level,
-      }
+          }
+          const MaxAge = 84000
+          const set_cookie:any='token='+token+'; Max-Age='+MaxAge+'; SameSite=None; Secure'; 
+          reply.header('Set-Cookie','visited=true; Max-Age='+MaxAge+'; HttpOnly, Secure');
+          reply.header('Set-Cookie', set_cookie)
           reply.header('Access-Control-Allow-Methods', 'GET')
           reply.header('message', 'Information Correct')
           reply.header('statusCode', 200)
@@ -1040,6 +1044,13 @@ fastify.post('/singincookiesession', { schema:singinSchema}, async (request: Fas
                   lastName: users.lastname,
                   level: users.level,
           }
+
+         
+          const MaxAge = 3600
+          const set_cookie:any='uid='+user_idx+'; Max-Age='+MaxAge+'; SameSite=None; Secure';
+          reply.header('Set-Cookie', set_cookie)
+          const set_cookie2: any = 'token=' + token + '; Max-Age=' + MaxAge + '; SameSite=None; Secure';
+          
           reply.header('Access-Control-Allow-Methods', 'GET')
           reply.header('message', 'Information Correct')
           reply.header('statusCode', 200)
