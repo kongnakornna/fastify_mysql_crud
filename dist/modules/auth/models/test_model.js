@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.TestModel=void 0;class TestModel{test(e){return e("sd_users as u").join("sd_users_profile as p","u.user_id","p.user_id").select("u.user_id","u.firstname","u.lastname","u.email","u.date").select("p.email as mail").orderBy("u.user_id","desc").limit(3).offset(5)}}exports.TestModel=TestModel;

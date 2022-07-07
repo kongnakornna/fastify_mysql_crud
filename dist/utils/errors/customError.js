@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.CustomError=void 0;class CustomError extends Error{constructor(r,o){super(o),Object.setPrototypeOf(this,CustomError.prototype)}}exports.CustomError=CustomError;
